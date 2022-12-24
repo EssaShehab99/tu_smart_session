@@ -11,27 +11,27 @@ class ThemeApp {
   static ThemeData light = ThemeData(
       fontFamily: "app_font_reg",
       primaryColor: const Color(0xFF104273),
-      hintColor: const Color(0xFFECECEC),
+      hintColor: const Color(0xFFEAEAEA),
       backgroundColor: const Color(0xFFFFFFFF),
       scaffoldBackgroundColor: const Color(0xFFFFFFFF),
       iconTheme: const IconThemeData(color: Color(0xFFFFFFFF), size: 25),
-      dividerColor: const Color(0xFF818E98),
-      indicatorColor: const Color(0xFF939393),
+      dividerColor: const Color(0xFFEAEAEA),
+      indicatorColor: const Color(0xFFEAEAEA),
       cardColor: const Color(0xFFFFFFFF),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
           backgroundColor: Color(0xFF104273)),
       appBarTheme: const AppBarTheme(color: Color(0xFFFAFAFA)),
       inputDecorationTheme: InputDecorationTheme(
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(SharedValues.borderRadius),
-          borderSide: const BorderSide(color: Color(0xFF104273), width: 1.5)
+            borderRadius: BorderRadius.circular(SharedValues.borderRadius),
+            borderSide: const BorderSide(color: Color(0xFF104273), width: 1.5)
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(SharedValues.borderRadius),
-          borderSide: const BorderSide(color: Color(0xFF104273),width: 1.5)),
+            borderRadius: BorderRadius.circular(SharedValues.borderRadius),
+            borderSide: const BorderSide(color: Color(0xFF104273),width: 1.5)),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(SharedValues.borderRadius),
-          borderSide: const BorderSide(color: Color(0xFFFF6464),width: 1.5)),
+            borderRadius: BorderRadius.circular(SharedValues.borderRadius),
+            borderSide: const BorderSide(color: Color(0xFFFF6464),width: 1.5)),
         errorStyle: const TextStyle(
             fontWeight: FontWeight.w400,
             fontSize: 14,
@@ -65,7 +65,7 @@ class ThemeApp {
           headline3: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 14,
-              color: Color(0xFF000000)),
+              color: Color(0xFF104273)),
           headline4: TextStyle(fontSize: 11, color: Color(0xFF494949)),
           headline5: TextStyle(fontSize: 14, color: Color(0xFF408B6A)),
           bodyText1: TextStyle(

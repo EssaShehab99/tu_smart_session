@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mentor_app/views/shared/shared_values.dart';
+import '/views/shared/shared_values.dart';
 
 class DropdownFieldWidget extends StatelessWidget {
   const DropdownFieldWidget(
@@ -11,7 +11,8 @@ class DropdownFieldWidget extends StatelessWidget {
         required this.items,
         this.onChanged,
         required this.keyDropDown,
-        this.validator, this.focusNode})
+        this.validator,
+        this.focusNode})
       : super(key: key);
   final String hintText;
   final DropdownMenuItemModel? value;
@@ -48,18 +49,17 @@ class DropdownFieldWidget extends StatelessWidget {
           ],
           icon: const SizedBox.shrink(),
           decoration: InputDecoration(
-            hintText: hintText,
-            prefixIcon: prefixIcon,
-            suffixIcon: suffixIcon,
-            contentPadding: const EdgeInsets.all(SharedValues.padding*1.6)
-          ),
+              hintText: hintText,
+              prefixIcon: prefixIcon,
+              suffixIcon: suffixIcon,
+              contentPadding: const EdgeInsets.all(SharedValues.padding * 1.6)),
         ),
       ),
     );
   }
 }
 
-class DropdownMenuItemModel{
+class DropdownMenuItemModel {
   dynamic id;
   String text;
   DropdownMenuItemModel({this.id, required this.text});

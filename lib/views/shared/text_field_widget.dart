@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mentor_app/views/shared/shared_components.dart';
-import 'package:mentor_app/views/shared/shared_values.dart';
 
 class TextFieldWidget extends StatelessWidget {
   const TextFieldWidget(
@@ -43,7 +41,7 @@ class TextFieldWidget extends StatelessWidget {
       textInputAction: textInputAction,
       validator: validator,
       onChanged: onChanged,
-      maxLines: maxLines,
+      maxLines: maxLines ?? 1,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       textDirection: textDirection,
       controller: controller,
@@ -55,9 +53,9 @@ class TextFieldWidget extends StatelessWidget {
       textAlign: textAlign ?? TextAlign.start,
       style: Theme.of(context).textTheme.subtitle1,
       decoration: InputDecoration(
-        hintText: hintText,
-          contentPadding: Theme.of(context).inputDecorationTheme.contentPadding
-      ),
+          hintText: hintText,
+          contentPadding:
+          Theme.of(context).inputDecorationTheme.contentPadding),
     );
   }
 }

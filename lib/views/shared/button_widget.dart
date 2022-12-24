@@ -3,7 +3,12 @@ import 'package:mentor_app/views/shared/shared_values.dart';
 
 class ButtonWidget extends StatelessWidget {
   const ButtonWidget(
-      {Key? key, this.onPressed, this.minWidth, this.height, this.child, this.withBorder})
+      {Key? key,
+      this.onPressed,
+      this.minWidth,
+      this.height,
+      this.child,
+      this.withBorder})
       : super(key: key);
   final VoidCallback? onPressed;
   final double? minWidth;
@@ -19,7 +24,9 @@ class ButtonWidget extends StatelessWidget {
       minWidth: minWidth,
       shape: OutlineInputBorder(
           borderRadius: BorderRadius.circular(SharedValues.borderRadius),
-          borderSide: withBorder==false?BorderSide.none:BorderSide(color: Theme.of(context).primaryColor,width: 1.5)),
+          borderSide: withBorder == false
+              ? BorderSide.none
+              : BorderSide(color: Theme.of(context).primaryColor, width: 1.5)),
       child: child,
     );
   }

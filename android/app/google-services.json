@@ -1,13 +1,14 @@
 {
   "project_info": {
     "project_number": "4022647474",
+    "firebase_url": "https://mentorapp-c09cf-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "mentorapp-c09cf",
     "storage_bucket": "mentorapp-c09cf.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:4022647474:android:a31e211359b745dea527ab",
+        "mobilesdk_app_id": "1:4022647474:android:47329be1ed68230ca527ab",
         "android_client_info": {
           "package_name": "com.example.mentor_app"
         }
@@ -29,6 +30,13 @@
             {
               "client_id": "4022647474-9foqk2cvd9lbut9uurks34lapbnph099.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "4022647474-76sb5g9gnpt0l2slm64uvcjt27q3q6rp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.mentorApp"
+              }
             }
           ]
         }

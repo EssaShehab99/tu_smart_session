@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:mentor_app/views/shared/assets_variables.dart';
-import 'package:mentor_app/views/shared/button_widget.dart';
-import 'package:mentor_app/views/shared/shared_components.dart';
-import 'package:mentor_app/views/shared/shared_values.dart';
+import '/views/ask_cody_screen/ask_cody_screen.dart';
+import '/views/shared/assets_variables.dart';
+import '/views/shared/button_widget.dart';
+import '/views/shared/shared_components.dart';
+import '/views/shared/shared_values.dart';
+import '/views/wallet_screen/wallet_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -12,71 +14,93 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      body: Column(
-        children: [
-          SharedComponents.appBar("TV Smart Session"),
-          Expanded(
-              child: Column(
+          body: Column(
             children: [
-              const Expanded(child: SizedBox.shrink()),
+              SharedComponents.appBar("TV Smart Session"),
               Expanded(
-                flex: 3,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: _buildButtonWidget(
-                          text: "Interactive Map", image: AssetsVariable.map),
-                    ),
-                    Expanded(
-                      child: _buildButtonWidget(
-                          text: "Cody Chatbot", image: AssetsVariable.bot),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                flex: 3,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: _buildButtonWidget(
-                          text: "Academic Advisor",
-                          image: AssetsVariable.support),
-                    ),
-                    Expanded(
-                      child: _buildButtonWidget(
-                          text: "Digital Wallet", image: AssetsVariable.wallet),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(SharedValues.padding),
-                  child: ButtonWidget(
-                    minWidth: double.infinity,
-                    child: Text("FAQ",
-                        style: Theme.of(context)
-                            .textTheme
-                            .button
-                            ?.copyWith(decoration: TextDecoration.underline)),
-                  ),
-                ),
-              )
+                  child: Column(
+                    children: [
+                      const Expanded(child: SizedBox.shrink()),
+                      Expanded(
+                        flex: 3,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: _buildButtonWidget(
+                                  onPressed: () {
+
+                                  },
+                                  text: "Interactive Map",
+                                  image: AssetsVariable.map),
+                            ),
+                            Expanded(
+                              child: _buildButtonWidget(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => const AskCodyScreen()));
+
+                                  },
+                                  text: "Cody Chatbot", image: AssetsVariable.bot),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        flex: 3,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: _buildButtonWidget(
+                                  onPressed: () {
+
+                                  },
+                                  text: "Academic Advisor",
+                                  image: AssetsVariable.support),
+                            ),
+                            Expanded(
+                              child: _buildButtonWidget(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => const WalletScreen()));
+
+                                  },
+                                  text: "Digital Wallet", image: AssetsVariable.wallet),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(SharedValues.padding),
+                          child: ButtonWidget(
+                            minWidth: double.infinity,
+                            child: Text("FAQ",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .button
+                                    ?.copyWith(decoration: TextDecoration.underline)),
+                          ),
+                        ),
+                      )
+                    ],
+                  ))
             ],
-          ))
-        ],
-      ),
-    ));
+          ),
+        ));
   }
 
-  Widget _buildButtonWidget({required String image, required String text}) {
+  Widget _buildButtonWidget(
+      {required String image, required String text, VoidCallback? onPressed}) {
     return Builder(builder: (context) {
       return Padding(
         padding: const EdgeInsets.all(SharedValues.padding),
         child: ButtonWidget(
             withBorder: true,
-            onPressed: () {},
+            onPressed: onPressed,
             child: Padding(
               padding: const EdgeInsets.all(SharedValues.padding),
               child: Column(
@@ -90,7 +114,7 @@ class HomeScreen extends StatelessWidget {
                           image)),
                   Expanded(
                     child:
-                        Text(text, style: Theme.of(context).textTheme.button),
+                    Text(text, style: Theme.of(context).textTheme.button),
                   ),
                 ],
               ),
