@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '/views/ask_cody_screen/ask_cody_screen.dart';
+import '/views/map_screen/map_screen.dart';
 import '/views/shared/assets_variables.dart';
 import '/views/shared/button_widget.dart';
 import '/views/shared/shared_components.dart';
@@ -28,7 +29,10 @@ class HomeScreen extends StatelessWidget {
                             Expanded(
                               child: _buildButtonWidget(
                                   onPressed: () {
-
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => const MapScreen()));
                                   },
                                   text: "Interactive Map",
                                   image: AssetsVariable.map),
@@ -53,9 +57,7 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             Expanded(
                               child: _buildButtonWidget(
-                                  onPressed: () {
-
-                                  },
+                                  onPressed: () {},
                                   text: "Academic Advisor",
                                   image: AssetsVariable.support),
                             ),
