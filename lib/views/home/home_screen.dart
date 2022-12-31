@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
         child: Scaffold(
           body: Column(
             children: [
-              SharedComponents.appBar("TV Smart Session"),
+              SharedComponents.appBar("TV Smart Session",withBackBtn: false),
               Expanded(
                   child: Column(
                     children: [
