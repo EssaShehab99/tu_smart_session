@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
         child: Scaffold(
           body: Column(
             children: [
-              SharedComponents.appBar("TV Smart Session",withBackBtn: false),
+              SharedComponents.appBar("TU Smart Services",withBackBtn: false),
               Expanded(
                   child: Column(
                     children: [
@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                                         MaterialPageRoute(
                                             builder: (context) => const MapScreen()));
                                   },
-                                  text: "Interactive Map",
+                                  text: "Campus Map",
                                   image: AssetsVariable.map),
                             ),
                             Expanded(
@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                                             builder: (context) => const AskCodyScreen()));
 
                                   },
-                                  text: "Cody Chatbot", image: AssetsVariable.bot),
+                                  text: "ASK Cody", image: AssetsVariable.bot),
                             ),
                           ],
                         ),
@@ -58,7 +58,7 @@ class HomeScreen extends StatelessWidget {
                             Expanded(
                               child: _buildButtonWidget(
                                   onPressed: () {},
-                                  text: "Academic Advisor",
+                                  text: "Academic Advisor Session",
                                   image: AssetsVariable.support),
                             ),
                             Expanded(

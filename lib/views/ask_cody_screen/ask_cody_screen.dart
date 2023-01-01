@@ -25,7 +25,7 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SharedComponents.appBar("Digital Wallet"),
+          SharedComponents.appBar("ASK Cody"),
           Expanded(
             child: FutureBuilder(
                 future: provider.getQuestions(),
