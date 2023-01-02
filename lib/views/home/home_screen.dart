@@ -18,51 +18,57 @@ class HomeScreen extends StatelessWidget {
         child: Scaffold(
       body: Column(
         children: [
-          SharedComponents.appBar("TV Smart Session",withBackBtn: false),
-          Expanded(
-              child: Column(
-            children: [
-              const Expanded(child: SizedBox.shrink()),
+              SharedComponents.appBar("TU Smart Services",withBackBtn: false),
               Expanded(
-                flex: 3,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: _buildButtonWidget(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const MapScreen()));
-                          },
-                          text: "Interactive Map",
-                          image: AssetsVariable.map),
-                    ),
-                    Expanded(
-                      child: _buildButtonWidget(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const AskCodyScreen()));
+                  child: Column(
+                    children: [
+                      const Expanded(child: SizedBox.shrink()),
+                      Expanded(
+                        flex: 3,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: _buildButtonWidget(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => const MapScreen()));
+                                  },
+                                  text: "Campus Map",
+                                  image: AssetsVariable.map),
+                            ),
+                            Expanded(
+                              child: _buildButtonWidget(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => const AskCodyScreen()));
 
-                        },
-                          text: "Cody Chatbot", image: AssetsVariable.bot),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                flex: 3,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: _buildButtonWidget(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const AdvisorScreen()));
+                                  },
+                                  text: "ASK Cody", image: AssetsVariable.bot),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        flex: 3,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: _buildButtonWidget(
+                                  onPressed: () {},
+                                  text: "Academic Advisor Session",
+                                  image: AssetsVariable.support),
+                            ),
+                            Expanded(
+                              child: _buildButtonWidget(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => const WalletScreen()));
 
                         },
                           text: "Academic Advisor",
