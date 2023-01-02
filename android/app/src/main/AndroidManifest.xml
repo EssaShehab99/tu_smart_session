@@ -28,6 +28,10 @@
         android:label="tu_smart_session"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAuzvnKyU6BmA2nD-zJfxs3KYnTRMtfAlg" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

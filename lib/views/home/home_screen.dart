@@ -16,9 +16,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      body: Column(
-        children: [
-              SharedComponents.appBar("TU Smart Services",withBackBtn: false),
+          body: Column(
+            children: [
+              SharedComponents.appBar("TU Smart Session",withBackBtn: false),
               Expanded(
                   child: Column(
                     children: [
@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
                                         MaterialPageRoute(
                                             builder: (context) => const MapScreen()));
                                   },
-                                  text: "Campus Map",
+                                  text: "Interactive Map",
                                   image: AssetsVariable.map),
                             ),
                             Expanded(
@@ -47,7 +47,7 @@ class HomeScreen extends StatelessWidget {
                                             builder: (context) => const AskCodyScreen()));
 
                                   },
-                                  text: "ASK Cody", image: AssetsVariable.bot),
+                                  text: "Cody Chatbot", image: AssetsVariable.bot),
                             ),
                           ],
                         ),
@@ -58,8 +58,14 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             Expanded(
                               child: _buildButtonWidget(
-                                  onPressed: () {},
-                                  text: "Academic Advisor Session",
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => const AdvisorScreen()));
+
+                                  },
+                                  text: "Academic Advisor",
                                   image: AssetsVariable.support),
                             ),
                             Expanded(
@@ -70,42 +76,30 @@ class HomeScreen extends StatelessWidget {
                                         MaterialPageRoute(
                                             builder: (context) => const WalletScreen()));
 
-                        },
-                          text: "Academic Advisor",
-                          image: AssetsVariable.support),
-                    ),
-                    Expanded(
-                      child: _buildButtonWidget(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const WalletScreen()));
-
-                        },
-                          text: "Digital Wallet", image: AssetsVariable.wallet),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(SharedValues.padding),
-                  child: ButtonWidget(
-                    minWidth: double.infinity,
-                    child: Text("FAQ",
-                        style: Theme.of(context)
-                            .textTheme
-                            .button
-                            ?.copyWith(decoration: TextDecoration.underline)),
-                  ),
-                ),
-              )
+                                  },
+                                  text: "Digital Wallet", image: AssetsVariable.wallet),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(SharedValues.padding),
+                          child: ButtonWidget(
+                            minWidth: double.infinity,
+                            child: Text("FAQ",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .button
+                                    ?.copyWith(decoration: TextDecoration.underline)),
+                          ),
+                        ),
+                      )
+                    ],
+                  ))
             ],
-          ))
-        ],
-      ),
-    ));
+          ),
+        ));
   }
 
   Widget _buildButtonWidget(
@@ -129,7 +123,7 @@ class HomeScreen extends StatelessWidget {
                           image)),
                   Expanded(
                     child:
-                        Text(text, style: Theme.of(context).textTheme.button),
+                    Text(text, style: Theme.of(context).textTheme.button),
                   ),
                 ],
               ),

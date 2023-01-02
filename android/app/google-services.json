@@ -32,10 +32,10 @@
               "client_type": 3
             },
             {
-              "client_id": "4022647474-76sb5g9gnpt0l2slm64uvcjt27q3q6rp.apps.googleusercontent.com",
+              "client_id": "4022647474-3csmvcha1oqklgrf01d597tcdcmnj15q.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.mentorApp"
+                "bundle_id": "com.example.tuSmartSession"
               }
             }
           ]
@@ -68,10 +68,10 @@
               "client_type": 3
             },
             {
-              "client_id": "4022647474-76sb5g9gnpt0l2slm64uvcjt27q3q6rp.apps.googleusercontent.com",
+              "client_id": "4022647474-3csmvcha1oqklgrf01d597tcdcmnj15q.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.mentorApp"
+                "bundle_id": "com.example.tuSmartSession"
               }
             }
           ]
