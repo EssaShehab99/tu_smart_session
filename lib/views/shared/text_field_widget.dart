@@ -3,21 +3,21 @@ import 'package:flutter/material.dart';
 class TextFieldWidget extends StatelessWidget {
   const TextFieldWidget(
       {Key? key,
-        required this.controller,
-        this.hintText,
-        this.validator,
-        this.keyboardType,
-        this.onChanged,
-        this.focusNode,
-        this.readOnly,
-        this.textAlign,
-        this.onTap,
-        this.obscureText,
-        this.textDirection,
-        this.prefixIcon,
-        this.suffixIcon,
-        this.textInputAction,
-        this.maxLines})
+      required this.controller,
+      this.hintText,
+      this.validator,
+      this.keyboardType,
+      this.onChanged,
+      this.focusNode,
+      this.readOnly,
+      this.textAlign,
+      this.onTap,
+      this.obscureText,
+      this.textDirection,
+      this.prefixIcon,
+      this.suffixIcon,
+      this.textInputAction,
+      this.maxLines})
       : super(key: key);
   final TextEditingController controller;
   final String? hintText;
@@ -55,7 +55,7 @@ class TextFieldWidget extends StatelessWidget {
       decoration: InputDecoration(
           hintText: hintText,
           contentPadding:
-          Theme.of(context).inputDecorationTheme.contentPadding),
+              Theme.of(context).inputDecorationTheme.contentPadding),
     );
   }
 }

@@ -23,15 +23,15 @@ class ThemeApp {
       appBarTheme: const AppBarTheme(color: Color(0xFFFAFAFA)),
       inputDecorationTheme: InputDecorationTheme(
         enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(SharedValues.borderRadius),
-            borderSide: const BorderSide(color: Color(0xFF104273), width: 1.5)
+          borderRadius: BorderRadius.circular(SharedValues.borderRadius),
+          borderSide: const BorderSide(color: Color(0xFF104273), width: 1.5)
         ),
         focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(SharedValues.borderRadius),
-            borderSide: const BorderSide(color: Color(0xFF104273),width: 1.5)),
+          borderRadius: BorderRadius.circular(SharedValues.borderRadius),
+          borderSide: const BorderSide(color: Color(0xFF104273),width: 1.5)),
         errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(SharedValues.borderRadius),
-            borderSide: const BorderSide(color: Color(0xFFFF6464),width: 1.5)),
+          borderRadius: BorderRadius.circular(SharedValues.borderRadius),
+          borderSide: const BorderSide(color: Color(0xFFFF6464),width: 1.5)),
         errorStyle: const TextStyle(
             fontWeight: FontWeight.w400,
             fontSize: 14,

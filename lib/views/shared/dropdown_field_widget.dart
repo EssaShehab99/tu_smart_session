@@ -4,15 +4,15 @@ import '/views/shared/shared_values.dart';
 class DropdownFieldWidget extends StatelessWidget {
   const DropdownFieldWidget(
       {Key? key,
-        required this.hintText,
-        this.prefixIcon,
-        this.suffixIcon,
-        this.value,
-        required this.items,
-        this.onChanged,
-        required this.keyDropDown,
-        this.validator,
-        this.focusNode})
+      required this.hintText,
+      this.prefixIcon,
+      this.suffixIcon,
+      this.value,
+      required this.items,
+      this.onChanged,
+      required this.keyDropDown,
+      this.validator,
+      this.focusNode})
       : super(key: key);
   final String hintText;
   final DropdownMenuItemModel? value;

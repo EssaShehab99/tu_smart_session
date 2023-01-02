@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import '/views/advisor_screen/advisor_screen.dart';
 import '/views/ask_cody_screen/ask_cody_screen.dart';
 import '/views/map_screen/map_screen.dart';
 import '/views/shared/assets_variables.dart';
@@ -15,84 +16,90 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          body: Column(
+      body: Column(
+        children: [
+          SharedComponents.appBar("TV Smart Session",withBackBtn: false),
+          Expanded(
+              child: Column(
             children: [
-              SharedComponents.appBar("TV Smart Session",withBackBtn: false),
+              const Expanded(child: SizedBox.shrink()),
               Expanded(
-                  child: Column(
-                    children: [
-                      const Expanded(child: SizedBox.shrink()),
-                      Expanded(
-                        flex: 3,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: _buildButtonWidget(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => const MapScreen()));
-                                  },
-                                  text: "Interactive Map",
-                                  image: AssetsVariable.map),
-                            ),
-                            Expanded(
-                              child: _buildButtonWidget(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => const AskCodyScreen()));
+                flex: 3,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: _buildButtonWidget(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const MapScreen()));
+                          },
+                          text: "Interactive Map",
+                          image: AssetsVariable.map),
+                    ),
+                    Expanded(
+                      child: _buildButtonWidget(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const AskCodyScreen()));
 
-                                  },
-                                  text: "Cody Chatbot", image: AssetsVariable.bot),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: _buildButtonWidget(
-                                  onPressed: () {},
-                                  text: "Academic Advisor",
-                                  image: AssetsVariable.support),
-                            ),
-                            Expanded(
-                              child: _buildButtonWidget(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => const WalletScreen()));
+                        },
+                          text: "Cody Chatbot", image: AssetsVariable.bot),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                flex: 3,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: _buildButtonWidget(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const AdvisorScreen()));
 
-                                  },
-                                  text: "Digital Wallet", image: AssetsVariable.wallet),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(SharedValues.padding),
-                          child: ButtonWidget(
-                            minWidth: double.infinity,
-                            child: Text("FAQ",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .button
-                                    ?.copyWith(decoration: TextDecoration.underline)),
-                          ),
-                        ),
-                      )
-                    ],
-                  ))
+                        },
+                          text: "Academic Advisor",
+                          image: AssetsVariable.support),
+                    ),
+                    Expanded(
+                      child: _buildButtonWidget(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const WalletScreen()));
+
+                        },
+                          text: "Digital Wallet", image: AssetsVariable.wallet),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(SharedValues.padding),
+                  child: ButtonWidget(
+                    minWidth: double.infinity,
+                    child: Text("FAQ",
+                        style: Theme.of(context)
+                            .textTheme
+                            .button
+                            ?.copyWith(decoration: TextDecoration.underline)),
+                  ),
+                ),
+              )
             ],
-          ),
-        ));
+          ))
+        ],
+      ),
+    ));
   }
 
   Widget _buildButtonWidget(
@@ -116,7 +123,7 @@ class HomeScreen extends StatelessWidget {
                           image)),
                   Expanded(
                     child:
-                    Text(text, style: Theme.of(context).textTheme.button),
+                        Text(text, style: Theme.of(context).textTheme.button),
                   ),
                 ],
               ),

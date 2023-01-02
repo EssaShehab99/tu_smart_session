@@ -1,6 +1,6 @@
 {
-    "name": "mentor_app",
-    "short_name": "mentor_app",
+    "name": "tu_smart_session",
+    "short_name": "tu_smart_session",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

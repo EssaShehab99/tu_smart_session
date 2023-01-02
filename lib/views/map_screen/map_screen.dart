@@ -103,7 +103,7 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    int searchType=-1;
+    int searchType = -1;
     return SafeArea(
         child: Scaffold(
       resizeToAvoidBottomInset: false,
@@ -134,50 +134,49 @@ class _MapScreenState extends State<MapScreen> {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            SharedComponents.showBottomSheet(context, child: StatefulBuilder(
-              builder:(context, setStateWidget) {
-                return ListView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  padding: const EdgeInsets.all(SharedValues.padding),
-                  children: [
+            SharedComponents.showBottomSheet(context,
+                child: StatefulBuilder(builder: (context, setStateWidget) {
+              return ListView(
+                physics: const NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.all(SharedValues.padding),
+                children: [
+                  DropdownFieldWidget(
+                      hintText: "Search by",
+                      prefixIcon: const Icon(Icons.keyboard_arrow_down_rounded),
+                      items: [
+                        DropdownMenuItemModel(text: "Name or Number", id: 0),
+                        DropdownMenuItemModel(text: "Search by Service", id: 1)
+                      ],
+                      onChanged: (value) {
+                        setStateWidget(() {
+                          searchType = value?.id ?? -1;
+                        });
+                      },
+                      keyDropDown: GlobalKey()),
+                  const SizedBox(height: SharedValues.padding),
+                  if (searchType == 0)
+                    TextFieldWidget(
+                        controller: TextEditingController(),
+                        hintText: "Building name"),
+                  if (searchType == 1)
                     DropdownFieldWidget(
-                        hintText: "Search by",
-                        prefixIcon: const Icon(Icons.keyboard_arrow_down_rounded),
+                        hintText: "Select Service",
+                        prefixIcon:
+                            const Icon(Icons.keyboard_arrow_down_rounded),
                         items: [
-                          DropdownMenuItemModel(text: "Name or Number", id: 0),
-                          DropdownMenuItemModel(text: "Search by Service", id: 1)
+                          DropdownMenuItemModel(text: "11", id: 1),
+                          DropdownMenuItemModel(text: "22", id: 2)
                         ],
-                        onChanged: (value) {
-                         setStateWidget(() {
-                           searchType=value?.id??-1;
-                         });
-                        },
+                        onChanged: (value) {},
                         keyDropDown: GlobalKey()),
-                    const SizedBox(height: SharedValues.padding),
-                    if(searchType==0)
-                      TextFieldWidget(
-                          controller: TextEditingController(),
-                          hintText: "Building name"),
-
-                    if(searchType==1)
-                      DropdownFieldWidget(
-                          hintText: "Select Service",
-                          prefixIcon: const Icon(Icons.keyboard_arrow_down_rounded),
-                          items: [
-                            DropdownMenuItemModel(text: "11", id: 1),
-                            DropdownMenuItemModel(text: "22", id: 2)
-                          ],
-                          onChanged: (value) {},
-                          keyDropDown: GlobalKey()),
-                    const SizedBox(height: SharedValues.padding * 4),
-                    ButtonWidget(
-                      child:
-                      Text("Search", style: Theme.of(context).textTheme.button),
-                    )
-                  ],
-                );
-              }
-            ));
+                  const SizedBox(height: SharedValues.padding * 4),
+                  ButtonWidget(
+                    child: Text("Search",
+                        style: Theme.of(context).textTheme.button),
+                  )
+                ],
+              );
+            }));
           },
           child: const Icon(Icons.search_outlined)),
     ));
