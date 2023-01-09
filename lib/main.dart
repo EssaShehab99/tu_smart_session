@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import '/data/providers/advisor_provider.dart';
 import '/data/local/sharedpref_helper/preferences.dart';
 import '/data/models/user.dart';
 import '/data/providers/auth_provider.dart';
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => AppStateManager()),
         ChangeNotifierProvider(create: (_) => AuthProvider()..setUser(user)),
+        ChangeNotifierProvider(create: (_) => AdvisorProvider()),
         ChangeNotifierProxyProvider<AuthProvider, AskCodyProvider>(
             create: (context) => AskCodyProvider(
                 Provider.of<AuthProvider>(context, listen: false).user),

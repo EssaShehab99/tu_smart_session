@@ -8,31 +8,31 @@ import '/views/shared/shared_values.dart';
 class SharedComponents {
   SharedComponents._privateConstructor();
   static final SharedComponents _instance =
-  SharedComponents._privateConstructor();
+      SharedComponents._privateConstructor();
   static SharedComponents get instance => _instance;
 
   static Widget appBar(String title, {bool? withBackBtn}) => Builder(
       builder: (context) => Container(
-        width: double.infinity,
-        height: 150,
-        decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor,
-          borderRadius: const BorderRadius.vertical(
-              bottom: Radius.circular(SharedValues.borderRadius * 2)),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 50,
-              child: withBackBtn == false
-                  ? null
-                  : IconButton(
-                  onPressed: () => Navigator.pop(context),
-                  icon: const Icon(Icons.arrow_back)),
+            width: double.infinity,
+            height: 150,
+            decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
+              borderRadius: const BorderRadius.vertical(
+                  bottom: Radius.circular(SharedValues.borderRadius * 2)),
             ),
-            Expanded(
-                child: Align(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 50,
+                  child: withBackBtn == false
+                      ? null
+                      : IconButton(
+                          onPressed: () => Navigator.pop(context),
+                          icon: const Icon(Icons.arrow_back)),
+                ),
+                Expanded(
+                    child: Align(
                   alignment: Alignment.bottomCenter,
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(SharedValues.padding * 2,
@@ -61,9 +61,9 @@ class SharedComponents {
                     ),
                   ),
                 ))
-          ],
-        ),
-      ));
+              ],
+            ),
+          ));
 
   static Future<dynamic> showBottomSheet(BuildContext context,
       {double? height, Widget? child}) {
@@ -81,7 +81,7 @@ class SharedComponents {
         filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
         child: Container(
           padding:
-          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           height: (mediaQuery.orientation == Orientation.portrait)
               ? height ?? (mediaQuery.size.height * 0.75)
               : mediaQuery.size.height,
@@ -101,7 +101,7 @@ class SharedComponents {
                   decoration: BoxDecoration(
                       color: Theme.of(context).dividerColor,
                       borderRadius:
-                      BorderRadius.circular(SharedValues.borderRadius)),
+                          BorderRadius.circular(SharedValues.borderRadius)),
                 ),
               ),
               Expanded(child: child ?? const SizedBox.shrink())

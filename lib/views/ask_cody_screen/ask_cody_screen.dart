@@ -14,6 +14,89 @@ class AskCodyScreen extends StatefulWidget {
 }
 
 class _AskCodyScreenState extends State<AskCodyScreen> {
+  // List list = [
+  //   {
+  //     "id": 1,
+  //     "question": "Hi Raghad, I'm Cody",
+  //     "answer": null,
+  //     "click-able": false,
+  //     "group": 1
+  //   },
+  //   {
+  //     "id": 2,
+  //     "question":
+  //         "I will help you, choose the question you want and I will answer you.",
+  //     "answer": null,
+  //     "click-able": false,
+  //     "group": 1
+  //   },
+  //   {
+  //     "id": 3,
+  //     "question": "1. Adding/withdrawing courses",
+  //     "answer":
+  //         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  //     "click-able": true,
+  //     "group": 2
+  //   },
+  //   {
+  //     "id": 4,
+  //     "question": "2. Issuing a university card",
+  //     "answer":
+  //         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  //     "click-able": true,
+  //     "group": 2
+  //   },
+  //   {
+  //     "id": 5,
+  //     "question": "3. Approving cooperative training intuitions",
+  //     "answer":
+  //         "Medical care:\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  //     "click-able": true,
+  //     "group": 2
+  //   },
+  //   {
+  //     "id": 6,
+  //     "question": "4. Communicating with academic staff",
+  //     "answer":
+  //         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  //     "click-able": true,
+  //     "group": 2
+  //   },
+  //   {
+  //     "id": 7,
+  //     "question": "5. Medical care",
+  //     "answer":
+  //         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  //     "click-able": true,
+  //     "group": 2
+  //   },
+  //   {
+  //     "id": 8,
+  //     "question": "6. Official documents issuance",
+  //     "answer":
+  //         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  //     "click-able": true,
+  //     "group": 2
+  //   },
+  //   {
+  //     "id": 9,
+  //     "question": "5.Medical care",
+  //     "answer":
+  //         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  //     "click-able": false,
+  //     "my-message": true,
+  //     "group": 3
+  //   },
+  // ];
+  // List<Question> messages = [];
+  // List<int> distincts = [];
+  @override
+  void initState() {
+    // messages = list.map((e) => Question.fromJson(e)).toList();
+    // distincts =
+    //     messages.distinctBy((e) => e.group).map((e) => e.group).toList();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

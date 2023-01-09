@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import '/views/advisor_screen/advisor_screen.dart';
 import '/views/ask_cody_screen/ask_cody_screen.dart';
 import '/views/map_screen/map_screen.dart';
 import '/views/shared/assets_variables.dart';
@@ -17,7 +18,7 @@ class HomeScreen extends StatelessWidget {
         child: Scaffold(
           body: Column(
             children: [
-              SharedComponents.appBar("TU Smart Services",withBackBtn: false),
+              SharedComponents.appBar("TU Smart Session",withBackBtn: false),
               Expanded(
                   child: Column(
                     children: [
@@ -34,7 +35,7 @@ class HomeScreen extends StatelessWidget {
                                         MaterialPageRoute(
                                             builder: (context) => const MapScreen()));
                                   },
-                                  text: "Campus Map",
+                                  text: "Interactive Map",
                                   image: AssetsVariable.map),
                             ),
                             Expanded(
@@ -46,7 +47,7 @@ class HomeScreen extends StatelessWidget {
                                             builder: (context) => const AskCodyScreen()));
 
                                   },
-                                  text: "ASK Cody", image: AssetsVariable.bot),
+                                  text: "Cody Chatbot", image: AssetsVariable.bot),
                             ),
                           ],
                         ),
@@ -57,8 +58,14 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             Expanded(
                               child: _buildButtonWidget(
-                                  onPressed: () {},
-                                  text: "Academic Advisor Session",
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => const AdvisorScreen()));
+
+                                  },
+                                  text: "Academic Advisor",
                                   image: AssetsVariable.support),
                             ),
                             Expanded(
