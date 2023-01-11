@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tu_smart_session/data/network/data_response.dart';
 import '/data/utils/extension.dart';
 import 'constants/endpoint.dart';
 
@@ -73,6 +74,19 @@ class AuthApi {
           .where("student-number", isEqualTo: id)
           .get();
       return response.docs.firstOrNull;
+    } catch (e) {
+      rethrow;
+    }
+  }
+  Future<bool> updateUser(String id,Map<String, dynamic> body) async {
+    try {
+      final response=  await _fireStore
+          .collection(Endpoints.users)
+          .where("id", isEqualTo: int.parse(id))
+          .get();
+      await _fireStore
+          .collection(Endpoints.users).doc(response.docs.firstOrNull?.id).update(body);
+      return true;
     } catch (e) {
       rethrow;
     }

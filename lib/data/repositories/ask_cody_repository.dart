@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:tu_smart_session/data/models/section.dart';
 import '/data/models/subject.dart';
 import '/data/models/user.dart';
 import '/data/local/sharedpref_helper/preferences.dart';
@@ -16,8 +17,8 @@ class AskCodyRepository {
     try {
       final response = await _askCodyApi.getQuestions();
       final questions =
-          response.map((e) => Question.fromJson(e.data())).toList();
-      Question welcomeQuestion =
+          response.map((e) => Questions.fromJson(e.data())).toList();
+      Questions welcomeQuestion =
           questions.firstWhere((element) => element.id == 1);
       welcomeQuestion.question = welcomeQuestion.question.replaceAll(
           RegExp(r'name'), user?.universityCard?.name.split(" ").first ?? "");
@@ -33,6 +34,16 @@ class AskCodyRepository {
       final response = await _askCodyApi.getSubject(id);
       final subject =Subject.fromJson(response.first.data());
       return Success(subject);
+    } catch (e) {
+      return Error(e);
+    }
+  }
+  Future<Result> getSection(String id) async {
+    debugPrint("==========AskCodyRepository->getSubject->|| ==========");
+    try {
+      final response = await _askCodyApi.getSection(id);
+      final section =Section.fromJson(response.first.data());
+      return Success(section);
     } catch (e) {
       return Error(e);
     }

@@ -12,6 +12,7 @@ class Endpoints {
   static const healthCard='health-card';
   static const questions='questions';
   static const subject='subjects';
+  static const section='sections';
   static const advisor='advisor';
 
 }

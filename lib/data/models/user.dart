@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:tu_smart_session/data/models/student_subject.dart';
+
 import 'gym_card.dart';
 import 'health_card.dart';
 import 'university_card.dart';
@@ -11,6 +14,7 @@ class User {
   UniversityCard? universityCard;
   HealthCard? healthCard;
   GymCard? gymCard;
+  List<StudentSubject>? studentSubjects;
   User(
       {required this.id,
       required this.studentNumber,
@@ -19,9 +23,12 @@ class User {
       required this.password,
       this.universityCard,
       this.healthCard,
+      this.studentSubjects,
       this.gymCard});
 
   factory User.fromJson(Map<String, dynamic> json) {
+    debugPrint(
+        "================User->fromJson->subjects: ${List.from(json["subjects"] ?? []).toString()}================");
     return User(
       id: json["id"],
       studentNumber: json["student-number"],
@@ -31,6 +38,9 @@ class User {
       universityCard: UniversityCard.fromJson(json["university-card"]),
       healthCard: HealthCard.fromJson(json["health-card"]),
       gymCard: GymCard.fromJson(json["gym-card"]),
+      studentSubjects: (json["student-subject"] as List?)
+          ?.map((e) => StudentSubject.fromJson(e))
+          .toList(),
     );
   }
 
@@ -44,8 +54,10 @@ class User {
       "university-card": universityCard?.toJson(),
       "health-card": healthCard?.toJson(),
       "gym-card": gymCard?.toJson(),
+      "student-subject": studentSubjects?.map((e) => e.toJson()).toList(),
     };
   }
+
   Map<String, dynamic> toFirebase() {
     return {
       "id": id,

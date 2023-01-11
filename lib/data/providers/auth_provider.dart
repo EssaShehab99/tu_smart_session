@@ -26,6 +26,13 @@ class AuthProvider extends ChangeNotifier {
     void setUser(User? user){
     _user=user;
     }
+    Future<void> updateUserData() async {
+      Result result=await _authRepository.updateUserData(_user?.studentNumber??0,_user?.password??"");
+      if(result is Success){
+        _user=result.value;
+        notifyListeners();
+      }
+    }
     Future<void> signOut() async {
       Result result=await _authRepository.signOut();
       if(result is Success) {

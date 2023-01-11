@@ -104,6 +104,22 @@ class AuthRepository {
       return Error(e);
     }
   }
+  Future<Result> updateUserData(int studentNumber, String password) async {
+    try{
+      return await signIn(studentNumber, password);
+
+    }catch (e){
+      return Error(e);
+    }
+  }
+  Future<Result> updateUser(User user) async {
+    try{
+       return Success(await _authApi.updateUser(user.id.toString(),user.toJson()));
+
+    }catch (e){
+      return Error(e);
+    }
+  }
   Future<Result> signOut() async {
     try{
       bool status = await _preferences.delete(PreferenceVariable.user);

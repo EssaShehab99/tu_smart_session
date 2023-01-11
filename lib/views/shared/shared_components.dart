@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '/data/providers/auth_provider.dart';
@@ -162,4 +163,51 @@ class SharedComponents {
       ));
     });
   }
+  static Future<dynamic> showOverlayLoading(
+      BuildContext context, Function() futureFun) =>
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        barrierColor: Colors.transparent,
+        builder: (BuildContext context) {
+          return WillPopScope(
+            onWillPop: () async => false,
+            child: FutureBuilder(
+              future: futureFun(),
+              builder: (_, snapshot) {
+                if(snapshot.connectionState==ConnectionState.done){
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    Navigator.pop(context);
+                  });
+                }
+                return SizedBox(
+                    height: 200,
+                    width: 200,
+                    child: Align(
+                      child: AvatarGlow(
+                        glowColor: Theme.of(context).primaryColor,
+                        duration: const Duration(
+                          milliseconds: 2000,
+                        ),
+                        repeat: true,
+                        showTwoGlows: true,
+                        endRadius: 50,
+                        child: Container(
+                            height: 50,
+                            width: 50,
+                            decoration: BoxDecoration(
+                                color: Colors.white12,
+                                borderRadius: BorderRadius.circular(120)),
+                            child:  CircularProgressIndicator(
+                              backgroundColor: Colors.white,
+                              valueColor:
+                              AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
+                            )),
+                      ),
+                    ));
+              }
+            ),
+          );
+        },
+      );
 }

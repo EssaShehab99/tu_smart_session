@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
+import 'package:tu_smart_session/data/providers/auth_provider.dart';
 import '/views/advisor_screen/advisor_screen.dart';
 import '/views/ask_cody_screen/ask_cody_screen.dart';
 import '/views/map_screen/map_screen.dart';
@@ -9,9 +11,23 @@ import '/views/shared/shared_components.dart';
 import '/views/shared/shared_values.dart';
 import '/views/wallet_screen/wallet_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      SharedComponents.showOverlayLoading(context, ()async{
+        await Provider.of<AuthProvider>(context,listen: false).updateUserData();
+      });
+    });
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
