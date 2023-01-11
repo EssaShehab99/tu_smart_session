@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
+import '/data/network/http_exception.dart';
 import '/data/local/sharedpref_helper/preference_variable.dart';
 import '/data/local/sharedpref_helper/preferences.dart';
 import '/data/models/gym_card.dart';
@@ -30,7 +31,10 @@ class AuthRepository {
           reference: resultGymCard.reference);
       user.healthCard = HealthCard.fromJson(resultHealthCard.data(),
           reference: resultHealthCard.reference);
-      await _authApi.setUser(user.toFirebase());
+      String? id=await _authApi.setUser(user.toFirebase());
+      if(id==null){
+        return Error(ExistUserException());
+      }
       await _preferences.delete(PreferenceVariable.user);
       await _preferences.insert(
           PreferenceVariable.user, jsonEncode(user.toJson()));
@@ -97,6 +101,14 @@ class AuthRepository {
       final response = await _authApi.getHealthCard(id);
       return Success(HealthCard.fromJson(response.data()));
     } catch (e) {
+      return Error(e);
+    }
+  }
+  Future<Result> signOut() async {
+    try{
+      bool status = await _preferences.delete(PreferenceVariable.user);
+      return Success(status);
+    }catch (e){
       return Error(e);
     }
   }

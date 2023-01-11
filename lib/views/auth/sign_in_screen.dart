@@ -60,12 +60,28 @@ class _SignInScreenState extends State<SignInScreen> {
                   child: TextFieldWidget(
                       controller: studentNumber,
                       keyboardType: TextInputType.number,
+                      validator: (value) {
+                        if (value != null && value.isNotEmpty) {
+                          return null;
+                        }
+                        return "هذا الحقل مطلوب";
+                      },
+                      textInputAction: TextInputAction.next,
                       hintText: "Id Number"),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(SharedValues.padding),
                   child: TextFieldWidget(
-                      controller: password, hintText: "Password"),
+                    controller: password,
+                    validator: (value) {
+                      if (value != null && value.isNotEmpty) {
+                        return null;
+                      }
+                      return "هذا الحقل مطلوب";
+                    },
+                    hintText: "Password",
+                    textInputAction: TextInputAction.done,
+                  ),
                 ),
                 const SizedBox(height: SharedValues.padding * 5),
                 Padding(
@@ -76,13 +92,21 @@ class _SignInScreenState extends State<SignInScreen> {
                       if (_formKey.currentState!.validate()) {
                         Result result = await Provider.of<AuthProvider>(context,
                                 listen: false)
-                            .signIn(int.parse(studentNumber.text), password.text);
+                            .signIn(int.tryParse(studentNumber.text) ?? 0,
+                                password.text);
                         if (result is Success) {
                           // ignore: use_build_context_synchronously
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => const HomeScreen()));
+                        } else if (result is Error) {
+                          // ignore: use_build_context_synchronously
+                          SharedComponents.showSnackBar(
+                              context, "User or password incorrect !!",
+                              backgroundColor:
+                                  // ignore: use_build_context_synchronously
+                                  Theme.of(context).colorScheme.error);
                         }
                       }
                     },

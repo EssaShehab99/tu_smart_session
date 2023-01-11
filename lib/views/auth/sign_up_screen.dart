@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '/data/network/http_exception.dart';
 import '/data/models/user.dart';
 import '/data/network/data_response.dart';
 import '/data/providers/auth_provider.dart';
@@ -157,7 +158,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 email: email.text,
                                 phone: phone.text,
                                 password: password.text));
-                        if (result is Success) {
+                        if (result is Error&&result.exception is ExistUserException){
+                          // ignore: use_build_context_synchronously
+                          SharedComponents.showSnackBar(context, "This account already exists. please log in");
+                        }
+                        else if (result is Success) {
                           // ignore: use_build_context_synchronously
                           Navigator.push(
                               context,

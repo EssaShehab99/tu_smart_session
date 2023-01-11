@@ -37,25 +37,29 @@ class TextFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      textInputAction: textInputAction,
-      validator: validator,
-      onChanged: onChanged,
-      maxLines: maxLines ?? 1,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      textDirection: textDirection,
-      controller: controller,
-      readOnly: readOnly ?? false,
-      obscureText: obscureText ?? false,
-      keyboardType: keyboardType,
-      onTap: onTap,
-      focusNode: focusNode,
-      textAlign: textAlign ?? TextAlign.start,
-      style: Theme.of(context).textTheme.subtitle1,
-      decoration: InputDecoration(
-          hintText: hintText,
-          contentPadding:
-              Theme.of(context).inputDecorationTheme.contentPadding),
+    return AbsorbPointer(
+      absorbing: readOnly??false,
+      child: TextFormField(
+        textInputAction: textInputAction,
+        validator: validator,
+        onChanged: onChanged,
+        maxLines: maxLines ?? 1,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        textDirection: textDirection,
+        controller: controller,
+        obscureText: obscureText ?? false,
+        keyboardType: keyboardType,
+        onTap: onTap,
+        focusNode: focusNode,
+        textAlign: textAlign ?? TextAlign.start,
+        style: Theme.of(context).textTheme.subtitle1,
+        decoration: InputDecoration(
+          prefixIcon: prefixIcon,
+          suffixIcon: suffixIcon,
+            hintText: hintText,
+            contentPadding:
+                Theme.of(context).inputDecorationTheme.contentPadding),
+      ),
     );
   }
 }

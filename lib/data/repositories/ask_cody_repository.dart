@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import '/data/models/subject.dart';
 import '/data/models/user.dart';
 import '/data/local/sharedpref_helper/preferences.dart';
 import '/data/models/question.dart';
@@ -22,6 +23,16 @@ class AskCodyRepository {
           RegExp(r'name'), user?.universityCard?.name.split(" ").first ?? "");
       questions.sort((a, b) => a.id.compareTo(b.id));
       return Success(questions);
+    } catch (e) {
+      return Error(e);
+    }
+  }
+  Future<Result> getSubject(String id) async {
+    debugPrint("==========AskCodyRepository->getSubject->|| ==========");
+    try {
+      final response = await _askCodyApi.getSubject(id);
+      final subject =Subject.fromJson(response.first.data());
+      return Success(subject);
     } catch (e) {
       return Error(e);
     }

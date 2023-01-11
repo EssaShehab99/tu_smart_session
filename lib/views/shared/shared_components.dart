@@ -2,6 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '/data/providers/auth_provider.dart';
+import '/views/auth/auth_screen.dart';
+import 'package:provider/provider.dart';
 import '/views/shared/assets_variables.dart';
 import '/views/shared/shared_values.dart';
 
@@ -11,7 +14,9 @@ class SharedComponents {
       SharedComponents._privateConstructor();
   static SharedComponents get instance => _instance;
 
-  static Widget appBar(String title, {bool? withBackBtn}) => Builder(
+  static Widget appBar(String title, {bool? withBackBtn,bool? withUserOptions}) {
+    List<String> listItem=["Sign out"];
+    return Builder(
       builder: (context) => Container(
             width: double.infinity,
             height: 150,
@@ -25,7 +30,30 @@ class SharedComponents {
               children: [
                 SizedBox(
                   height: 50,
-                  child: withBackBtn == false
+                  child: withUserOptions==true? PopupMenuButton<int>(
+                      onSelected: (value) async {
+                        await Provider.of<AuthProvider>(context,listen: false).signOut();
+                        // ignore: use_build_context_synchronously
+                        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => AuthScreen(),), (route) => false);
+                      },
+                      itemBuilder: (BuildContext context) =>
+                      <PopupMenuEntry<int>>[
+                        for (var item in listItem)
+                          PopupMenuItem(
+                            value: listItem.indexOf(item),
+                            child: Text(
+                              item,
+                              style: Theme.of(context).textTheme.headline3,
+                            ),
+                          )
+                      ],
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal:SharedValues.padding),
+                        child: Icon(
+                          Icons.more_vert,
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                      )):withBackBtn == false
                       ? null
                       : IconButton(
                           onPressed: () => Navigator.pop(context),
@@ -64,6 +92,7 @@ class SharedComponents {
               ],
             ),
           ));
+  }
 
   static Future<dynamic> showBottomSheet(BuildContext context,
       {double? height, Widget? child}) {
@@ -110,5 +139,27 @@ class SharedComponents {
         ),
       ),
     );
+  }
+
+
+  static showSnackBar(context, String text, {Color? backgroundColor}) {
+    return WidgetsBinding.instance.addPostFrameCallback((_) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Flexible(
+              child: Text(
+                text,
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: backgroundColor ?? Theme.of(context).primaryColor,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      ));
+    });
   }
 }

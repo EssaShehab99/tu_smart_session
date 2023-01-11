@@ -14,4 +14,15 @@ class AskCodyApi {
       rethrow;
     }
   }
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getSubject(String id) async {
+    try {
+      final response=  await _fireStore
+          .collection(Endpoints.subject)
+      .where("id",isEqualTo: int.parse(id))
+          .get();
+      return response.docs;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

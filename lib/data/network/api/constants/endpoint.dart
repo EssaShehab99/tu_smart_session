@@ -11,6 +11,7 @@ class Endpoints {
   static const gymCard='gym-card';
   static const healthCard='health-card';
   static const questions='questions';
+  static const subject='subjects';
   static const advisor='advisor';
 
 }

@@ -25,7 +25,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -56,7 +59,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyD6LhM8_M9x6dfba7VTB-5K1ufbckNlkjI',
-    appId: '1:4022647474:android:16ef4850d6bac469a527ab',
+    appId: '1:4022647474:android:47329be1ed68230ca527ab',
     messagingSenderId: '4022647474',
     projectId: 'mentorapp-c09cf',
     databaseURL: 'https://mentorapp-c09cf-default-rtdb.asia-southeast1.firebasedatabase.app',
@@ -65,23 +68,12 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyC1M0FbfEAyJTIzX8Mybm4eePWcRguQ5nU',
-    appId: '1:4022647474:ios:0d3a6613faeb1687a527ab',
+    appId: '1:4022647474:ios:1fb7e2177a3ad9f6a527ab',
     messagingSenderId: '4022647474',
     projectId: 'mentorapp-c09cf',
     databaseURL: 'https://mentorapp-c09cf-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'mentorapp-c09cf.appspot.com',
-    iosClientId: '4022647474-3csmvcha1oqklgrf01d597tcdcmnj15q.apps.googleusercontent.com',
-    iosBundleId: 'com.example.tuSmartSession',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyC1M0FbfEAyJTIzX8Mybm4eePWcRguQ5nU',
-    appId: '1:4022647474:ios:0d3a6613faeb1687a527ab',
-    messagingSenderId: '4022647474',
-    projectId: 'mentorapp-c09cf',
-    databaseURL: 'https://mentorapp-c09cf-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'mentorapp-c09cf.appspot.com',
-    iosClientId: '4022647474-3csmvcha1oqklgrf01d597tcdcmnj15q.apps.googleusercontent.com',
-    iosBundleId: 'com.example.tuSmartSession',
+    iosClientId: '4022647474-76sb5g9gnpt0l2slm64uvcjt27q3q6rp.apps.googleusercontent.com',
+    iosBundleId: 'com.example.mentorApp',
   );
 }

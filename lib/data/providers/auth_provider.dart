@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '/data/network/http_exception.dart';
 import '/data/network/data_response.dart';
 import '/data/models/user.dart';
 import '/data/di/service_locator.dart';
@@ -24,5 +25,11 @@ class AuthProvider extends ChangeNotifier {
     }
     void setUser(User? user){
     _user=user;
+    }
+    Future<void> signOut() async {
+      Result result=await _authRepository.signOut();
+      if(result is Success) {
+        _user=null;
+      }
     }
 }

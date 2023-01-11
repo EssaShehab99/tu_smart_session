@@ -47,7 +47,7 @@ class ThemeApp {
           onPrimary: Color(0xFFFFFFFF),
           secondary: Color(0x4B53A57C),
           onSecondary: Color(0xFFFFFFFF),
-          error: Color(0xFFFF0000),
+          error: Color(0xFFE86173),
           onError: Color(0xFFFFFFFF),
           background: Color(0xFFFFFFFF),
           onBackground: Color(0xFF000000),

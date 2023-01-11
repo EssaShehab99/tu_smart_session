@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '/data/models/subject.dart';
 import '/data/models/user.dart';
 import '/data/utils/extension.dart';
 import '/data/models/question.dart';
@@ -12,6 +13,8 @@ class AskCodyProvider extends ChangeNotifier {
   final User? _user;
   List<Question> questions = [];
   List<int> distincts = [];
+  bool isReadOnly=true;
+  Subject? subject;
 
   Future<Result> getQuestions() async {
     if(questions.isNotEmpty) {
@@ -32,9 +35,21 @@ class AskCodyProvider extends ChangeNotifier {
   }
 
  void addQuestions(Question question){
-   debugPrint("=========AskCodyProvider->addQuestions->question:${question.toJson()} =========");
-   questions.add(question);
+   debugPrint("=========AskCodyProvider->addQuestions->question:${question.id} =========");
+   questions=[...questions,question];
    _distinct();
    notifyListeners();
  }
+ void changeReadOnly(bool readOnly){
+  isReadOnly=readOnly;
+  notifyListeners();
+  }
+  Future<Result> getSubject(String id) async {
+    Result result = await _askCodyRepository.getSubject(id);
+    if (result is Success) {
+      subject=result.value;
+    }
+    return result;
+
+  }
 }
