@@ -65,9 +65,13 @@ class User {
       "email": email,
       "phone": phone,
       "password": password,
+      if(universityCard?.documentReference!=null)
       "university-card": universityCard?.documentReference,
+      if(healthCard?.documentReference!=null)
       "health-card": healthCard?.documentReference,
+      if(gymCard?.documentReference!=null)
       "gym-card": gymCard?.documentReference,
+      "student-subject": studentSubjects?.map((e) => e.toJson()).toList(),
     };
   }
 }

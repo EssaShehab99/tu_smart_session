@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       SharedComponents.showOverlayLoading(context, ()async{
-        await Provider.of<AuthProvider>(context,listen: false).updateUserData();
+        await Provider.of<AuthProvider>(context,listen: false).getUserData();
       });
     });
     super.initState();

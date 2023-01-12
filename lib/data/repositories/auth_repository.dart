@@ -104,7 +104,8 @@ class AuthRepository {
       return Error(e);
     }
   }
-  Future<Result> updateUserData(int studentNumber, String password) async {
+
+  Future<Result> getUserData(int studentNumber, String password) async {
     try{
       return await signIn(studentNumber, password);
 
@@ -114,7 +115,7 @@ class AuthRepository {
   }
   Future<Result> updateUser(User user) async {
     try{
-       return Success(await _authApi.updateUser(user.id.toString(),user.toJson()));
+       return Success(await _authApi.updateUser(user.id.toString(),user.toFirebase()));
 
     }catch (e){
       return Error(e);

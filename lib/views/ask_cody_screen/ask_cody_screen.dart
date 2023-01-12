@@ -22,6 +22,7 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
   ScrollController? _scrollController;
   late FocusNode focusNode;
   List<int>? questionsId;
+  Questions? selectedQuestion;
   List<String>? command;
   String? hintText = "";
   int count = 0;
@@ -105,35 +106,90 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
                                         onPressed: () async {
                                           if (hintText ==
                                               "Please enter subject ID") {
+                                            focusNode.unfocus();
+                                            hintText = null;
+                                            provider.changeReadOnly(true);
+                                            await Future.delayed(
+                                                const Duration(seconds: 1));
                                             Result result =
                                                 await provider.getSubject(
                                                     _messageController.text);
                                             if (result is Success) {
                                               _messageController.text = "";
-                                              count++;
-                                              hintText = command?.get(count);
-                                              provider.changeReadOnly(false);
-                                              focusNode.requestFocus();
-                                            } else {
+                                              if (selectedQuestion?.question ==
+                                                  "Add section") {
+                                                count++;
+                                                hintText = command?.get(count);
+                                                provider.changeReadOnly(false);
+                                                focusNode.requestFocus();
+                                              } else if (selectedQuestion
+                                                      ?.question ==
+                                                  "Edit subject") {
+                                                Result result = await provider
+                                                    .requestEdit();
+                                                if (result is Success) {
+                                                  // ignore: use_build_context_synchronously
+                                                  SharedComponents.showSnackBar(
+                                                      context, result.value);
+                                                } else if (result is Error) {
+                                                  // ignore: use_build_context_synchronously
+                                                  SharedComponents.showSnackBar(
+                                                      context,
+                                                      result.exception);
+                                                }
+                                              } else if (selectedQuestion
+                                                      ?.question ==
+                                                  "Delete subject") {
+                                                Result result = await provider
+                                                    .requestDelete();
+                                                if (result is Success) {
+                                                  // ignore: use_build_context_synchronously
+                                                  SharedComponents.showSnackBar(
+                                                      context, result.value);
+                                                } else if (result is Error) {
+                                                  // ignore: use_build_context_synchronously
+                                                  SharedComponents.showSnackBar(
+                                                      context,
+                                                      result.exception);
+                                                }
+                                              }
+                                            } else if (result is Error) {
+                                              _messageController.text = "";
+                                              // ignore: use_build_context_synchronously
+                                              FocusScope.of(context)
+                                                  .requestFocus(FocusNode());
                                               // ignore: use_build_context_synchronously
                                               SharedComponents.showSnackBar(
-                                                  context,
-                                                  "This subject not found !!");
+                                                  context, result.exception);
                                             }
                                           } else if (hintText ==
                                               "Please enter section ID") {
                                             SharedComponents.showOverlayLoading(
-                                                context, () async{
+                                                context, () async {
                                               if ((await provider.getSection(
                                                       _messageController.text))
                                                   is Success) {
                                                 Result result = await provider
                                                     .checkSectionTime();
                                                 if (result is Success) {
+                                                  hintText = null;
+                                                  _messageController.text = "";
+                                                  // ignore: use_build_context_synchronously
+                                                  FocusScope.of(context)
+                                                      .requestFocus(
+                                                          FocusNode());
+                                                  provider.changeReadOnly(true);
                                                   // ignore: use_build_context_synchronously
                                                   SharedComponents.showSnackBar(
                                                       context, "Subject added");
                                                 } else if (result is Error) {
+                                                  hintText = null;
+                                                  _messageController.text = "";
+                                                  // ignore: use_build_context_synchronously
+                                                  FocusScope.of(context)
+                                                      .requestFocus(
+                                                          FocusNode());
+                                                  provider.changeReadOnly(true);
                                                   // ignore: use_build_context_synchronously
                                                   SharedComponents.showSnackBar(
                                                       context,
@@ -179,6 +235,7 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
                 borderRadius:
                     BorderRadius.circular(SharedValues.borderRadius * 0.5),
                 onTap: () async {
+                  selectedQuestion = question;
                   if (question.type?.contains("clickable") == true) {
                     await Future.delayed(const Duration(milliseconds: 125));
                     provider.addQuestions(Questions(
@@ -216,11 +273,15 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
                       provider.repeatQuestions(questionsId!);
                     }
                   } else if (question.type?.contains("dependent") == true) {
+                    focusNode.unfocus();
+                    _messageController.text = "";
+                    provider.changeReadOnly(true);
+                    count = 0;
                     command = question.type?.split(":").get(1)?.split(",");
                     if (command != null && command!.isNotEmpty) {
                       hintText = command?.get(count);
                       await Future.delayed(const Duration(milliseconds: 250));
-                      provider.changeReadOnly(!provider.isReadOnly);
+                      provider.changeReadOnly(false);
                       focusNode.requestFocus();
                     }
                   }

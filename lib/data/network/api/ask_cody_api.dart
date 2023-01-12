@@ -36,4 +36,14 @@ class AskCodyApi {
       rethrow;
     }
   }
+  Future<DocumentReference<Map<String, dynamic>>> request(Map<String,dynamic> body) async {
+    try {
+      final response=  await _fireStore
+          .collection(Endpoints.forms)
+      .add(body);
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

@@ -48,4 +48,13 @@ class AskCodyRepository {
       return Error(e);
     }
   }
+  Future<Result> request(Map<String,dynamic> form) async {
+    debugPrint("==========AskCodyRepository->requestEdit->|| ==========");
+    try {
+      final response = await _askCodyApi.request(form);
+      return Success(response.id);
+    } catch (e) {
+      return Error(e);
+    }
+  }
 }

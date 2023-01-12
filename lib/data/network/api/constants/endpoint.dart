@@ -14,5 +14,6 @@ class Endpoints {
   static const subject='subjects';
   static const section='sections';
   static const advisor='advisor';
+  static const forms='forms';
 
 }

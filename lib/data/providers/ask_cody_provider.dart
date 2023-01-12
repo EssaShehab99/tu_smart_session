@@ -72,6 +72,8 @@ class AskCodyProvider extends ChangeNotifier {
     Result result = await _askCodyRepository.getSubject(id);
     if (result is Success) {
       subject = result.value;
+    } else if (result is Error) {
+      return Error("This subject not found !!");
     }
     return result;
   }
@@ -80,18 +82,26 @@ class AskCodyProvider extends ChangeNotifier {
     Result result = await _askCodyRepository.getSection(id);
     if (result is Success) {
       section = result.value;
+    } else if (result is Error) {
+      return Error("This section not found !!");
     }
     return result;
   }
 
   Future<Result> checkSectionTime() async {
     List<Section> sections = [];
+    if (_user?.studentSubjects
+            ?.where((element) => element.id == subject?.id)
+            .isNotEmpty ==
+        true) {
+      return Error("This subject has already been added");
+    }
     if (subject?.requirement != null) {
       for (int reqSub in subject?.requirement ?? []) {
         if (_user?.studentSubjects
                 ?.where(
-                    (element) => element.id == reqSub || element.taken != true)
-                .isNotEmpty ??
+                    (element) => element.id == reqSub && element.taken == true)
+                .isEmpty ??
             false) {
           return Error("You must finish requirements");
         }
@@ -109,14 +119,46 @@ class AskCodyProvider extends ChangeNotifier {
           this.section?.time.isBefore(
                   section.time.add(Duration(hours: subject?.hours ?? 0))) ==
               true) {
-        _user!.studentSubjects = [
-          ...?_user!.studentSubjects,
-          StudentSubject(
-              id: subject!.id, section: this.section!.id, taken: false)
-        ];
-        return await _authRepository.updateUser(_user!);
+        continue;
+      } else {
+        return Error("Please select another section");
       }
     }
-    return Error("Please select another section");
+    return await addSubject();
+  }
+
+  Future<Result> addSubject() async {
+    _user!.studentSubjects = [
+      ...?_user!.studentSubjects,
+      StudentSubject(id: subject!.id, section: this.section!.id, taken: false)
+    ];
+    return await _authRepository.updateUser(_user!);
+  }
+
+  Future<Result> requestEdit() async {
+    Result result= await _askCodyRepository.request({
+      "id": DateTime.now().millisecondsSinceEpoch,
+      "subject":subject?.id,
+      "user":_user?.id,
+    "type":"Edit",
+      "date":DateTime.now().toIso8601String()
+    });
+    if(result is Success){
+      return Success( "Request sent successfully");
+    }
+   return result;
+  }
+  Future<Result> requestDelete() async {
+    Result result= await _askCodyRepository.request({
+      "id": DateTime.now().millisecondsSinceEpoch,
+      "subject":subject?.id,
+      "user":_user?.id,
+      "type":"Delete",
+      "date":DateTime.now().toIso8601String()
+    });
+    if(result is Success){
+      return Success( "Request sent successfully");
+    }
+   return result;
   }
 }
