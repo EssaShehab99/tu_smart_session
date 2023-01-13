@@ -240,7 +240,7 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
                     await Future.delayed(const Duration(milliseconds: 125));
                     provider.addQuestions(Questions(
                       id: question.id,
-                      group: 3,
+                      group: 2,
                       question: question.question,
                       myMessage: true,
                       isDisplay: true,
@@ -248,7 +248,7 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
                     await Future.delayed(const Duration(milliseconds: 250));
                     provider.addQuestions(Questions(
                       id: question.id,
-                      group: 3,
+                      group: 2,
                       question: question.answer ?? "",
                       myMessage: false,
                       isDisplay: true,
@@ -265,7 +265,7 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
                       provider.addQuestions(Questions(
                         id: question.id,
                         group: 3,
-                        question: question.question ?? "",
+                        question: question.question,
                         myMessage: true,
                         isDisplay: true,
                       ));
@@ -303,11 +303,16 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
                           }
                         }
                       }()),
-                  child: Text(question.question,
-                      style: Theme.of(context).textTheme.headline3?.copyWith(
-                          color: question.myMessage
-                              ? Theme.of(context).colorScheme.onPrimary
-                              : null)),
+                  child: Text(
+                    question.question,
+                    style: Theme.of(context).textTheme.headline3?.copyWith(
+                        color: question.myMessage
+                            ? Theme.of(context).colorScheme.onPrimary
+                            : null,
+                        decoration: question.group == 2
+                            ? TextDecoration.underline
+                            : null),
+                  ),
                 ),
               )),
     );

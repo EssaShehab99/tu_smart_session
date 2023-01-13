@@ -199,7 +199,7 @@ class SharedComponents {
                                 color: Colors.white12,
                                 borderRadius: BorderRadius.circular(120)),
                             child:  CircularProgressIndicator(
-                              backgroundColor: Colors.white,
+                              backgroundColor: Theme.of(context).colorScheme.primary,
                               valueColor:
                               AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
                             )),

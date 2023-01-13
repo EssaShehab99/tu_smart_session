@@ -43,7 +43,7 @@ class ThemeApp {
       ),
       colorScheme: const ColorScheme(
           brightness: Brightness.light,
-          primary: Color(0xFF408B6A),
+          primary: Color(0xFFF4C750),
           onPrimary: Color(0xFFFFFFFF),
           secondary: Color(0x4B53A57C),
           onSecondary: Color(0xFFFFFFFF),
@@ -52,7 +52,7 @@ class ThemeApp {
           background: Color(0xFFFFFFFF),
           onBackground: Color(0xFF000000),
           surface: Color(0xFFC1CAC5),
-          onSurface: Color(0xFF408B6A)),
+          onSurface: Color(0xFFF4C750)),
       textTheme: const TextTheme(
           headline1: TextStyle(
               fontWeight: FontWeight.bold,
@@ -67,7 +67,7 @@ class ThemeApp {
               fontSize: 14,
               color: Color(0xFF104273)),
           headline4: TextStyle(fontSize: 11, color: Color(0xFF494949)),
-          headline5: TextStyle(fontSize: 14, color: Color(0xFF408B6A)),
+          headline5: TextStyle(fontSize: 14, color: Color(0xFFF4C750)),
           bodyText1: TextStyle(
               fontWeight: FontWeight.w400,
               fontSize: 14,
