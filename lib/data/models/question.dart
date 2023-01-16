@@ -6,6 +6,7 @@ class Questions {
   bool isDisplay;
   String? type;
   int group;
+  int order;
 
   Questions(
       {required this.id,
@@ -14,6 +15,7 @@ class Questions {
       required this.myMessage,
       this.type,
       required this.group,
+      required this.order,
       required this.isDisplay});
 
   factory Questions.fromJson(Map<String, dynamic> json) {
@@ -24,7 +26,8 @@ class Questions {
       myMessage: json["myMessage"] ?? false,
       type: json["type"],
       group: json["group"],
-      isDisplay: !json["type"].toString().contains("dependent"),
+      order: json["order"],
+      isDisplay: !(json["type"].toString().contains("dependent")||json["type"].toString().contains("url")),
     );
   }
   Questions from() {
@@ -34,6 +37,8 @@ class Questions {
         myMessage: myMessage,
         group: group,
         type: type,
+        order: order,
+        answer: answer,
         isDisplay: isDisplay);
   }
 }

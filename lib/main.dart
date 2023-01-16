@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tu_smart_session/views/test_screen.dart';
 import '/data/providers/advisor_provider.dart';
 import '/data/local/sharedpref_helper/preferences.dart';
 import '/data/models/user.dart';
@@ -61,6 +62,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeApp.light,
         // home: const TestScreen(),
         // home:  const AuthScreen(),
+        // home: TestScreen(),
         home: user == null ? const AuthScreen() : const HomeScreen(),
       ),
     );

@@ -4,6 +4,7 @@ import '/views/shared/button_widget.dart';
 
 class TestScreen extends StatefulWidget {
   const TestScreen({Key? key}) : super(key: key);
+
   @override
   State<TestScreen> createState() => _TestScreenState();
 }
@@ -130,17 +131,25 @@ class _TestScreenState extends State<TestScreen> {
     // }
 
     final questions = [
-      {"type": "none", "group": 1, "id": 1, "question": "Hi name, I'm Cody"},
+      {
+        "type": "none",
+        "group": 1,
+        "order": 1,
+        "id": 1,
+        "question": "Hi name, I'm Cody",
+      },
       {
         "type": "none",
         "group": 1,
         "id": 2,
+        "order": 2,
         "question":
             "I will help you, choose the question you want and I will answer you."
       },
       {
-      "question": "1. Adding/withdrawing courses",
-      "answer":
+        "order": 3,
+        "question": "1. Adding/withdrawing courses",
+        "answer":
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
         "type": "clickable",
         "group": 2,
@@ -152,6 +161,7 @@ class _TestScreenState extends State<TestScreen> {
         "type": "clickable",
         "group": 2,
         "id": 4,
+        "order": 4,
         "question": "2. Issuing a university card"
       },
       {
@@ -160,6 +170,7 @@ class _TestScreenState extends State<TestScreen> {
         "type": "clickable",
         "group": 2,
         "id": 5,
+        "order": 5,
         "question": "3. Approving cooperative training intuitions"
       },
       {
@@ -168,6 +179,7 @@ class _TestScreenState extends State<TestScreen> {
         "type": "clickable",
         "group": 2,
         "id": 6,
+        "order": 6,
         "question": "4. Communicating with academic staff"
       },
       {
@@ -176,6 +188,7 @@ class _TestScreenState extends State<TestScreen> {
         "type": "clickable",
         "group": 2,
         "id": 7,
+        "order": 7,
         "question": "5. Medical care"
       },
       {
@@ -184,10 +197,12 @@ class _TestScreenState extends State<TestScreen> {
         "type": "clickable",
         "group": 2,
         "id": 8,
+        "order": 8,
         "question": "6. Official documents issuance"
       },
       {
         "id": 9,
+        "order": 9,
         "question": "7. Add/Edit/Delete subject",
         "answer": "Add section",
         "type": "interactive:10,11,12",
@@ -195,6 +210,7 @@ class _TestScreenState extends State<TestScreen> {
       },
       {
         "id": 10,
+        "order": 10,
         "question": "Add section",
         "answer": "",
         "type": "dependent:Please enter subject ID,Please enter section ID",
@@ -202,12 +218,14 @@ class _TestScreenState extends State<TestScreen> {
       },
       {
         "id": 11,
+        "order": 11,
         "question": "Edit subject",
         "type": "dependent:Please enter subject ID",
         "group": 2,
       },
       {
         "id": 12,
+        "order": 12,
         "question": "Delete subject",
         "type": "dependent:Please enter subject ID",
         "group": 2,
@@ -218,6 +236,7 @@ class _TestScreenState extends State<TestScreen> {
         "type": "clickable",
         "group": 2,
         "id": 13,
+        "order": 13,
         "question": "Extra curricular activities"
       },
       {
@@ -226,7 +245,98 @@ class _TestScreenState extends State<TestScreen> {
         "type": "clickable",
         "group": 2,
         "id": 14,
+        "order": 14,
         "question": "Approving cooperative training intuition"
+      },
+      {
+        "answer": "",
+        "type": "interactive:16,17,18,19,20,21,22,23,24",
+        "group": 2,
+        "id": 15,
+        "order": 15,
+        "question": "University Library"
+      },
+      {
+        "id": 16,
+        "order": 16,
+        "question": "Digital library training course request form",
+        "answer":
+            "https://www.tu.edu.sa/Attachments/7615aec0-d470-400f-801e-a374e8a59cce_.pdf",
+        "type": "url",
+        "group": 2,
+      },
+      {
+        "id": 17,
+        "order": 17,
+        "question": "Audio book equipment borrowing form",
+        "answer":
+            "https://www.tu.edu.sa/Attachments/125d134d-9418-45ae-acd1-affe8e6ac2cb_.pdf",
+        "type": "url",
+        "group": 2,
+      },
+      {
+        "id": 18,
+        "order": 18,
+        "question": "Book proposal template",
+        "answer":
+            "https://www.tu.edu.sa/Attachments/42417ee0-39eb-4ccd-bc67-49a03e674762_.pdf",
+        "type": "url",
+        "group": 2,
+      },
+      {
+        "id": 19,
+        "order": 19,
+        "question": "Induction program evaluation form",
+        "answer":
+            "https://www.tu.edu.sa/Attachments/420e14ce-3c1a-4705-921e-a949ceb344b4_.pdf",
+        "type": "url",
+        "group": 2,
+      },
+      {
+        "id": 20,
+        "order": 20,
+        "question": "Course evaluation form",
+        "answer":
+            "https://www.tu.edu.sa/Attachments/69cba306-ee44-4197-89cd-74b9f46d4d28_.pdf",
+        "type": "url",
+        "group": 2,
+      },
+      {
+        "id": 21,
+        "order": 21,
+        "question": "Form of booking a hall or study vacancy",
+        "answer":
+            "https://www.tu.edu.sa/Attachments/45c3c02e-b3d2-4006-8076-81c344af03fc_.pdf",
+        "type": "url",
+        "group": 2,
+      },
+      {
+        "id": 22,
+        "order": 22,
+        "question":
+            "Hall reservation form in the central library in the male students' section",
+        "answer":
+            "https://www.tu.edu.sa/Attachments/971642f2-e4db-4041-a3a2-6b8d1a723ed1_.pdf",
+        "type": "url",
+        "group": 2,
+      },
+      {
+        "id": 23,
+        "order": 23,
+        "question": "Central Library visit form",
+        "answer":
+            "https://www.tu.edu.sa/Attachments/9f600428-e780-48b6-8402-97f747e6cc4f_.pdf",
+        "type": "url",
+        "group": 2,
+      },
+      {
+        "id": 24,
+        "order": 24,
+        "question": "Training course request form",
+        "answer":
+            "https://www.tu.edu.sa/Attachments/0b2db766-a203-4dde-bbbf-d91bff14aa87_.pdf",
+        "type": "url",
+        "group": 2,
       },
     ];
     for (var item in questions) {

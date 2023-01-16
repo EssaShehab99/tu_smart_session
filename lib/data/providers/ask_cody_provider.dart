@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tu_smart_session/data/models/section.dart';
 import 'package:tu_smart_session/data/models/student_subject.dart';
 import 'package:tu_smart_session/data/repositories/auth_repository.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '/data/models/subject.dart';
 import '/data/models/user.dart';
 import '/data/utils/extension.dart';
@@ -34,12 +35,6 @@ class AskCodyProvider extends ChangeNotifier {
     }
     return result;
   }
-  // void _distinct(){
-  //   distincts =
-  //       _questions.distinctBy((e) => e.group).map((e) => e.group).toList();
-  //   distincts.sort((a, b) => a.compareTo(b));
-  //
-  // }
 
   void addQuestions(Questions question) {
     debugPrint(
@@ -160,5 +155,15 @@ class AskCodyProvider extends ChangeNotifier {
       return Success( "Request sent successfully");
     }
    return result;
+  }
+
+  Future<void> launchUri(String url) async {
+    try {
+      debugPrint("================AskCodyProvider->launchUri: $url ================");
+      final uri= Uri.parse(url);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
+    } catch (_) {}
   }
 }

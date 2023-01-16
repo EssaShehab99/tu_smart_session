@@ -116,15 +116,13 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
                                                     _messageController.text);
                                             if (result is Success) {
                                               _messageController.text = "";
-                                              if (selectedQuestion?.question ==
-                                                  "Add section") {
+                                              if (selectedQuestion?.id == 10) {
                                                 count++;
                                                 hintText = command?.get(count);
                                                 provider.changeReadOnly(false);
                                                 focusNode.requestFocus();
-                                              } else if (selectedQuestion
-                                                      ?.question ==
-                                                  "Edit subject") {
+                                              } else if (selectedQuestion?.id ==
+                                                  11) {
                                                 Result result = await provider
                                                     .requestEdit();
                                                 if (result is Success) {
@@ -137,9 +135,8 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
                                                       context,
                                                       result.exception);
                                                 }
-                                              } else if (selectedQuestion
-                                                      ?.question ==
-                                                  "Delete subject") {
+                                              } else if (selectedQuestion?.id ==
+                                                  12) {
                                                 Result result = await provider
                                                     .requestDelete();
                                                 if (result is Success) {
@@ -226,6 +223,7 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
 
   Align _buildChatText(Questions question) {
     final provider = Provider.of<AskCodyProvider>(context, listen: false);
+
     return Align(
       alignment: question.myMessage
           ? AlignmentDirectional.centerEnd
@@ -242,6 +240,7 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
                       id: question.id,
                       group: 2,
                       question: question.question,
+                      order: question.order,
                       myMessage: true,
                       isDisplay: true,
                     ));
@@ -250,6 +249,7 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
                       id: question.id,
                       group: 2,
                       question: question.answer ?? "",
+                      order: question.order,
                       myMessage: false,
                       isDisplay: true,
                     ));
@@ -265,12 +265,15 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
                       provider.addQuestions(Questions(
                         id: question.id,
                         group: 3,
+                        answer: question.answer,
                         question: question.question,
+                        order: question.order,
                         myMessage: true,
                         isDisplay: true,
                       ));
                       await Future.delayed(const Duration(milliseconds: 250));
                       provider.repeatQuestions(questionsId!);
+                      var x=0;
                     }
                   } else if (question.type?.contains("dependent") == true) {
                     focusNode.unfocus();
@@ -284,6 +287,10 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
                       provider.changeReadOnly(false);
                       focusNode.requestFocus();
                     }
+                  }
+                  else if (question.type?.contains("url") == true &&
+                      question.answer != null) {
+                    await provider.launchUri(question.answer!);
                   }
                 },
                 child: Container(

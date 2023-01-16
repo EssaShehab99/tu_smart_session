@@ -9,7 +9,6 @@ import '/data/network/data_response.dart';
 
 class AskCodyRepository {
   final AskCodyApi _askCodyApi;
-  final _preferences = Preferences.instance;
   AskCodyRepository(this._askCodyApi);
 
   Future<Result> getQuestions(User? user) async {
@@ -22,7 +21,7 @@ class AskCodyRepository {
           questions.firstWhere((element) => element.id == 1);
       welcomeQuestion.question = welcomeQuestion.question.replaceAll(
           RegExp(r'name'), user?.universityCard?.name.split(" ").first ?? "");
-      questions.sort((a, b) => a.id.compareTo(b.id));
+      questions.sort((a, b) => a.order.compareTo(b.order));
       return Success(questions);
     } catch (e) {
       return Error(e);
