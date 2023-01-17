@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class HealthCard {
   int id;
   String name;
-  String bloodType;
+  String? bloodType;
   DateTime? dateOfBirth;
   String? chronicDisease;
   String? medication;
@@ -14,7 +14,7 @@ class HealthCard {
   HealthCard(
       {required this.id,
       required this.name,
-      required this.bloodType,
+      this.bloodType,
       this.dateOfBirth,
       this.chronicDisease,
       this.medication,

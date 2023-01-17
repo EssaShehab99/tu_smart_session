@@ -4,13 +4,19 @@ class UniversityCard {
   int id;
   String department;
   String name;
+  String? college;
+  String? academicDegree;
+  String? email;
   DocumentReference<Map<String, dynamic>>? documentReference;
 
   UniversityCard(
       {required this.id,
       required this.department,
       required this.name,
-      this.documentReference});
+      this.documentReference,
+      this.academicDegree,
+      this.college,
+      this.email,});
 
   factory UniversityCard.fromJson(Map<String, dynamic> json,
       {DocumentReference<Map<String, dynamic>>? reference}) {
@@ -19,6 +25,9 @@ class UniversityCard {
       id: json["id"],
       department: json["department"],
       name: json["name"],
+      academicDegree: json["academic-degree"],
+      college: json["college"],
+      email: json["email"],
     );
   }
 
@@ -27,6 +36,9 @@ class UniversityCard {
       "id": id,
       "department": department,
       "name": name,
+      "academic-degree": academicDegree,
+      "college": college,
+      "email": email,
     };
   }
 }

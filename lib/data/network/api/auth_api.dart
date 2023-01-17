@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:tu_smart_session/data/network/data_response.dart';
 import '/data/utils/extension.dart';
 import 'constants/endpoint.dart';
 
