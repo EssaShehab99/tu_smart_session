@@ -370,32 +370,32 @@ class _TestScreenState extends State<TestScreen> {
     //   await _fireStore.collection("questions").add(item);
     // }
     //
-    final advisors = [
-      {
-        "id": 12207,
-        "name": "Dr. Wael Yousef Alghamdi",
-        "user-name": "w.alghamdi",
-        "email": "Communication with academic staff",
-        "office-hours": "Tuesday : 11:00 - 12:00 , Thursday : 10:00 - 11:00",
-      },
-      {
-        "id": 7111,
-        "name": "Dr. Rajwa abduallh Alharthi",
-        "user-name": "w.alghamdi@tu.edu.sa",
-        "email": "Communication with academic staff",
-        "office-hours": "Wednesday : 11:00 - 12:00 , Friday : 10:00 - 11:00",
-      },
-      {
-        "id": 12207,
-        "name": "Dr. Abdulmajeed Alsufyani",
-        "user-name": "a.s.alsufyani",
-        "email": "a.s.alsufyani@tu.edu.sa",
-        "office-hours": "Friday : 8:00 - 9:00 , Thursday : 1:00 - 2:00",
-      },
-    ];
-    for (var item in advisors) {
-      await _fireStore.collection("advisor").add(item);
-    }
+    // final advisors = [
+    //   {
+    //     "id": 12207,
+    //     "name": "Dr. Wael Yousef Alghamdi",
+    //     "user-name": "w.alghamdi",
+    //     "email": "Communication with academic staff",
+    //     "office-hours": "Tuesday : 11:00 - 12:00 , Thursday : 10:00 - 11:00",
+    //   },
+    //   {
+    //     "id": 7111,
+    //     "name": "Dr. Rajwa abduallh Alharthi",
+    //     "user-name": "w.alghamdi@tu.edu.sa",
+    //     "email": "Communication with academic staff",
+    //     "office-hours": "Wednesday : 11:00 - 12:00 , Friday : 10:00 - 11:00",
+    //   },
+    //   {
+    //     "id": 12207,
+    //     "name": "Dr. Abdulmajeed Alsufyani",
+    //     "user-name": "a.s.alsufyani",
+    //     "email": "a.s.alsufyani@tu.edu.sa",
+    //     "office-hours": "Friday : 8:00 - 9:00 , Thursday : 1:00 - 2:00",
+    //   },
+    // ];
+    // for (var item in advisors) {
+    //   await _fireStore.collection("advisor").add(item);
+    // }
     //
     // final levels = [
     //   {
@@ -1165,7 +1165,32 @@ class _TestScreenState extends State<TestScreen> {
     // for (var item in sections) {
     //   await _fireStore.collection("sections").add(item);
     // }
-  }
+    final places = [
+      {
+        "id":1,
+        "name":"Library building",
+        "service":"Library",
+        "latitude": 21.430486647082326,
+        "longitude": 40.477370408334004,
+      },
+      {
+        "id":2,
+        "name":"Library Shop",
+        "service":"Library",
+        "latitude": 21.432761463688006,
+        "longitude": 40.478836600227154,
+      },
+      {
+        "id":3,
+        "name":"Library Market",
+        "service":"Library",
+        "latitude": 21.42815577152768,
+        "longitude": 40.47702397036595,
+      }
+    ];
+    for (var item in places) {
+      await _fireStore.collection("places").add(item);
+    }}
 
   Future deleteData() async {
     final advisor = await _fireStore.collection("advisor").get();

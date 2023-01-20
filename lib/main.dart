@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tu_smart_session/data/providers/place_provider.dart';
 import 'package:tu_smart_session/views/test_screen.dart';
 import '/data/providers/advisor_provider.dart';
 import '/data/local/sharedpref_helper/preferences.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AppStateManager()),
         ChangeNotifierProvider(create: (_) => AuthProvider()..setUser(user)),
         ChangeNotifierProvider(create: (_) => AdvisorProvider()),
+        ChangeNotifierProvider(create: (_) => PlaceProvider()),
         ChangeNotifierProxyProvider<AuthProvider, AskCodyProvider>(
             create: (context) => AskCodyProvider(
                 Provider.of<AuthProvider>(context, listen: false).user),
@@ -61,7 +63,6 @@ class MyApp extends StatelessWidget {
         locale: context.locale,
         debugShowCheckedModeBanner: false,
         theme: ThemeApp.light,
-        // home: const TestScreen(),
         // home:  const AuthScreen(),
         // home: TestScreen(),
         home: user == null ? const AuthScreen() : const HomeScreen(),

@@ -8,6 +8,9 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart';
 import 'package:location/location.dart';
+import 'package:provider/provider.dart';
+import 'package:tu_smart_session/data/models/place.dart';
+import 'package:tu_smart_session/data/providers/place_provider.dart';
 import 'package:tu_smart_session/data/utils/map_utils.dart';
 import '/views/shared/button_widget.dart';
 import '/views/shared/dropdown_field_widget.dart';
@@ -26,9 +29,12 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   List<Marker> markers = [];
   late Completer<GoogleMapController> _controller;
-
+  late PlaceProvider provider;
   late CameraPosition initialCameraPosition;
-  _handleTap(LatLng point) {/*
+
+  late TextEditingController placeController;
+  _handleTap(LatLng point) {
+    /*
     setState(() {
       debugPrint("========MapScreen->point: ${point.toString()}==========");
       markers.add(Marker(
@@ -39,104 +45,43 @@ class _MapScreenState extends State<MapScreen> {
         ),
       ));
     });
-  */}
+  */
+  }
 
   LatLng? currentLocation;
   LatLng? endLocation;
   PolylinePoints polylinePoints = PolylinePoints();
-  Map<PolylineId, Polyline> polylines = {}; //polylines to show direction
+  Map<PolylineId, Polyline> polylines = {};
   Location? location;
   StreamSubscription<LocationData>? locationSubscription;
 
   final StreamController<LatLng?> _streamController =
       StreamController.broadcast();
-  List<LatLng> polygons=const[
-  LatLng(21.4280225, 40.4729483),
-  LatLng(21.4278426, 40.4753838),
-  LatLng(21.4274829, 40.4753087),
-  LatLng(21.4258340, 40.4762957),
-   LatLng(21.4258951, 40.4769620),
-  LatLng(21.4261924, 40.4773750),
-  LatLng(21.4290194, 40.4774303),
-  LatLng(21.4294836, 40.4774319),
-  LatLng(21.4299458, 40.4777806),
-  LatLng(21.4298074, 40.4784313),
-  LatLng(21.4313227, 40.4783320),
-  LatLng(21.4313818, 40.4783446),
-  LatLng(21.4314012, 40.4783614),
-  LatLng(21.4314280, 40.4783721),
-  LatLng(21.4314468, 40.4783755),
-  LatLng(21.4314599, 40.4783802),
-  LatLng(21.4314811, 40.4783856),
-  LatLng(21.4314967, 40.4783869),
-  LatLng(21.4315130, 40.4783869),
-  LatLng(21.4315305, 40.4783936),
-  LatLng(21.4315861, 40.4783970),
-  LatLng(21.4316436, 40.4783996),
-  LatLng(21.4316861, 40.4783970),
-  LatLng(21.4317136, 40.4783970),
-  LatLng(21.4317535, 40.4783755),
-  LatLng(21.4317860, 40.4783594),
-  LatLng(21.4318285, 40.4783379),
-  LatLng(21.4318909, 40.4783004),
-  LatLng(21.4319284, 40.4782763),
-  LatLng(21.4330895, 40.4781920),
-  LatLng(21.4329846, 40.4768322),
-  LatLng(21.4327130, 40.4737390),
-  LatLng(21.4280232, 40.4729118),
-  ];
+  List<LatLng> polygons = [];
   @override
   void initState() {
+    placeController = TextEditingController();
+    provider = Provider.of<PlaceProvider>(context, listen: false);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      SharedComponents.showOverlayLoading(context, () async {
+        await provider.getPlaces();
+      });
+    });
+    polygons = provider.polygons;
     _controller = Completer();
     initialCameraPosition = const CameraPosition(
-      target: LatLng(21.43124601185503, 40.476451419048345),
-      zoom: 15,
+      target: LatLng(21.430399643909276, 40.47577334606505),
+      zoom: 16.7,
     );
     super.initState();
-  }
-
-
-  Future<List<LatLng>> getRouteBetweenCoordinates(
-      LatLng start, LatLng end) async {
-    /*  List<LatLng> polylineCoordinates = [];
-    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-      "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-      PointLatLng(startLocation.latitude, startLocation.longitude),
-      PointLatLng(endLocation.latitude, endLocation.longitude),
-      travelMode: TravelMode.driving,
-    );
-      for (var point in result.points) {
-        polylineCoordinates.add(LatLng(point.latitude, point.longitude));
-      }
-    addPolyLine(polylineCoordinates);*/
-    /*List<LatLng> coordinates=[];
-    Response response = await get(Uri.parse(
-        "https://api.openrouteservice.org/v2/directions/driving-car?api_key=5b3ce3597851110001cf62484fb27a9a6569436a8321a6780a2549a4&start=${start.latitude},${start.longitude}&end=${end.latitude},${end.longitude}"));
-
-    var data = (jsonDecode(response.body)["features"] as List?)
-        ?.get(0)["geometry"]["coordinates"];
-    coordinates=List.of(data).map((e) => LatLng(List.of(e).get(0), List.of(e).get(1))).toList();
-    return coordinates;*/
-
-    List<LatLng> coordinates = [];
-    Response response = await get(Uri.parse(
-        "http://www.mapquestapi.com/directions/v2/route?key=Ex7UsYmSc7OBavM7L2asxSxVfM2NX2A0&from=${start.latitude},${start.longitude}&to=${end.latitude},${end.longitude}"));
-
-    var dataX =
-        List.of(jsonDecode(response.body)["route"]["legs"]).get(0)["maneuvers"];
-
-    coordinates = List.of(dataX)
-        .map((e) => LatLng(e["startPoint"]["lat"], e["startPoint"]["lng"]))
-        .toList();
-    return coordinates;
   }
 
   Future<void> getDirections() async {
     List<LatLng> polylineCoordinates = [];
     if (currentLocation == null || endLocation == null) return;
 
-    for (var point
-        in await getRouteBetweenCoordinates(currentLocation!, endLocation!)) {
+    for (var point in await provider.getRouteBetweenCoordinates(
+        currentLocation!, endLocation!)) {
       polylineCoordinates.add(LatLng(point.latitude, point.longitude));
     }
     addPolyLine(polylineCoordinates);
@@ -160,9 +105,7 @@ class _MapScreenState extends State<MapScreen> {
       polygonId: const PolygonId('test'),
       strokeWidth: 1,
       strokeColor: Colors.red,
-      holes: [
-        polygons
-      ],
+      holes: [polygons],
       points: const [
         LatLng(-89, 0),
         LatLng(89, 0),
@@ -193,17 +136,22 @@ class _MapScreenState extends State<MapScreen> {
         return;
       }
     }
-    locationSubscription =  location?.onLocationChanged.listen((LocationData currentLocation) async {
+    locationSubscription = location?.onLocationChanged
+        .listen((LocationData currentLocation) async {
       debugPrint("====================================");
-      if(MapUtils.containsLocationAtLatLng(LatLng(currentLocation.latitude!, currentLocation.longitude!), polygons, true)){
+      if (MapUtils.containsLocationAtLatLng(
+          LatLng(currentLocation.latitude!, currentLocation.longitude!),
+          polygons,
+          true)) {
         this.currentLocation =
             LatLng(currentLocation.latitude!, currentLocation.longitude!);
         await getDirections();
         _streamController.sink.add(this.currentLocation);
-      }
-      else{
+      } else {
         locationSubscription?.cancel();
-        SharedComponents.showSnackBar(context, "You must be on campus for the mapping services to be activated",backgroundColor: Theme.of(context).colorScheme.error);
+        SharedComponents.showSnackBar(context,
+            "You must be on campus for the mapping services to be activated",
+            backgroundColor: Theme.of(context).colorScheme.error);
       }
     });
   }
@@ -226,6 +174,7 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   void dispose() {
+    placeController?.dispose();
     _streamController.close();
     locationSubscription?.cancel();
     super.dispose();
@@ -273,6 +222,7 @@ class _MapScreenState extends State<MapScreen> {
       floatingActionButton: FloatingActionButton(
           onPressed: () {
             SharedComponents.showBottomSheet(context,
+                height: MediaQuery.of(context).size.height,
                 child: StatefulBuilder(builder: (context, setStateWidget) {
               return ListView(
                 physics: const NeverScrollableScrollPhysics(),
@@ -294,7 +244,9 @@ class _MapScreenState extends State<MapScreen> {
                   const SizedBox(height: SharedValues.padding),
                   if (searchType == 0)
                     TextFieldWidget(
-                        controller: TextEditingController(),
+                        suggestions:
+                            provider.places.map((e) => e.name).toList(),
+                        controller: placeController,
                         hintText: "Building name"),
                   if (searchType == 1)
                     DropdownFieldWidget(
@@ -311,9 +263,11 @@ class _MapScreenState extends State<MapScreen> {
                   ButtonWidget(
                     onPressed: () async {
                       Navigator.pop(context);
-                      await selectLocation(
-                          const LatLng(21.43124601185503, 40.476451419048345),
-                          "المكتبة");
+                      Place? place = provider.places.firstWhereOrNull(
+                          (element) => element.name == placeController.text);
+                      if (place?.latLng != null && place?.name != null) {
+                        await selectLocation(place!.latLng!, place.name);
+                      }
                     },
                     child: Text("Search",
                         style: Theme.of(context).textTheme.button),
@@ -326,4 +280,3 @@ class _MapScreenState extends State<MapScreen> {
     ));
   }
 }
-

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tu_smart_session/views/shared/shared_values.dart';
 
-class TextFieldWidget extends StatelessWidget {
+class TextFieldWidget extends StatefulWidget {
   const TextFieldWidget(
       {Key? key,
       required this.controller,
@@ -17,7 +18,8 @@ class TextFieldWidget extends StatelessWidget {
       this.prefixIcon,
       this.suffixIcon,
       this.textInputAction,
-      this.maxLines})
+      this.maxLines,
+      this.suggestions})
       : super(key: key);
   final TextEditingController controller;
   final String? hintText;
@@ -34,31 +36,135 @@ class TextFieldWidget extends StatelessWidget {
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final ValueChanged<String>? onChanged;
+  final List<String>? suggestions;
+
+  @override
+  State<TextFieldWidget> createState() => _TextFieldWidgetState();
+}
+
+class _TextFieldWidgetState extends State<TextFieldWidget>
+    with WidgetsBindingObserver {
+  OverlayEntry? _overlayEntry;
+  late LayerLink _layerLink;
+  FocusNode? _focusNode;
+
+  @override
+  void initState() {
+    if (widget.suggestions?.isNotEmpty == true) {
+      WidgetsBinding.instance.addObserver(this);
+    }
+    _layerLink = LayerLink();
+    _focusNode = widget.focusNode ?? FocusNode();
+    _focusNode?.addListener(() {
+      if (!_focusNode!.hasFocus) {
+        _overlayEntry?.remove();
+      }
+    });
+    super.initState();
+  }
+
+  OverlayEntry _createOverlayEntry(ctx) {
+    return OverlayEntry(builder: (context) {
+      return Positioned(
+        child: CompositedTransformFollower(
+          link: _layerLink,
+          showWhenUnlinked: false,
+          offset: const Offset(0, 60),
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: Material(
+              child: Container(
+                height: 200,
+                margin:
+                    const EdgeInsetsDirectional.only(end: SharedValues.padding*2),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.background,
+                    borderRadius:
+                        BorderRadius.circular(SharedValues.borderRadius),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Theme.of(context).shadowColor.withOpacity(0.1),
+                          blurRadius: 5,
+                          spreadRadius: 5)
+                    ]),
+                child: ListView(
+                  padding: const EdgeInsets.all(SharedValues.padding),
+                  children: [
+                    for (String item in widget.suggestions ?? [])
+                      InkWell(
+                        onTap: () {
+                          _overlayEntry?.remove();
+                          widget.controller.text=item;
+                        },
+                        child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                          const SizedBox(height: SharedValues.padding),
+                          Text(
+                            item,
+                            style: Theme.of(context).textTheme.headline3,
+                          ),
+                          const SizedBox(height: SharedValues.padding),
+                          const Divider(
+                            thickness: 2,
+                          ),
+                        ]),
+                      )
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    });
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    _focusNode?.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return AbsorbPointer(
-      absorbing: readOnly??false,
-      child: TextFormField(
-        textInputAction: textInputAction,
-        validator: validator,
-        onChanged: onChanged,
-        maxLines: maxLines ?? 1,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        textDirection: textDirection,
-        controller: controller,
-        obscureText: obscureText ?? false,
-        keyboardType: keyboardType,
-        onTap: onTap,
-        focusNode: focusNode,
-        textAlign: textAlign ?? TextAlign.start,
-        style: Theme.of(context).textTheme.subtitle1,
-        decoration: InputDecoration(
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon,
-            hintText: hintText,
-            contentPadding:
-                Theme.of(context).inputDecorationTheme.contentPadding),
+      absorbing: widget.readOnly ?? false,
+      child: CompositedTransformTarget(
+        link: _layerLink,
+        child: TextFormField(
+          textInputAction: widget.textInputAction,
+          validator: widget.validator,
+          onChanged: widget.onChanged,
+          maxLines: widget.maxLines ?? 1,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          textDirection: widget.textDirection,
+          controller: widget.controller,
+          obscureText: widget.obscureText ?? false,
+          keyboardType: widget.keyboardType,
+          onTap: () {
+            debugPrint(
+                "===============TextFieldWidget->build->widget.suggestions: ${widget.suggestions.toString()}=================");
+            if (widget.suggestions?.isNotEmpty == true) {
+              _overlayEntry = _createOverlayEntry(context);
+              Overlay.of(context)?.insert(_overlayEntry!);
+            } else if (widget.onTap != null) {
+              widget.onTap!();
+            }
+          },
+          focusNode: _focusNode,
+          textAlign: widget.textAlign ?? TextAlign.start,
+          style: Theme.of(context).textTheme.subtitle1,
+          decoration: InputDecoration(
+              prefixIcon: widget.prefixIcon,
+              suffixIcon: widget.suffixIcon,
+              hintText: widget.hintText,
+              contentPadding:
+                  Theme.of(context).inputDecorationTheme.contentPadding),
+        ),
       ),
     );
   }

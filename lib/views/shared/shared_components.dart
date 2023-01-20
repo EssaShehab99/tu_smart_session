@@ -106,10 +106,12 @@ class SharedComponents {
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
               top: Radius.circular(SharedValues.borderRadius * 2))),
+      useRootNavigator: true,
       context: context,
       builder: (context) => BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
         child: Container(
+          margin: EdgeInsets.only(top: mediaQuery.padding.top),
           padding:
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           height: (mediaQuery.orientation == Orientation.portrait)
