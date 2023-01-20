@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
             update: (context, auth, _) => AskCodyProvider(auth.user)),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'TU Smart Session',
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,

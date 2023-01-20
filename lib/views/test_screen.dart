@@ -1170,8 +1170,8 @@ class _TestScreenState extends State<TestScreen> {
         "id":1,
         "name":"Library building",
         "service":"Library",
-        "latitude": 21.430486647082326,
-        "longitude": 40.477370408334004,
+        "latitude": 21.431929383488406,
+        "longitude": 40.47588272488136,
       },
       {
         "id":2,
@@ -1186,6 +1186,20 @@ class _TestScreenState extends State<TestScreen> {
         "service":"Library",
         "latitude": 21.42815577152768,
         "longitude": 40.47702397036595,
+      },
+      {
+        "id":4,
+        "name":"College of Art TU",
+        "service":"College",
+        "latitude": 21.427547162957985,
+        "longitude": 40.476123797987476,
+      },
+      {
+        "id":5,
+        "name":"College of Applied Medical Sciences",
+        "service":"College",
+        "latitude": 21.428818234828594,
+        "longitude": 40.476231261392954,
       }
     ];
     for (var item in places) {

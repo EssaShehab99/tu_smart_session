@@ -31,23 +31,9 @@ class _MapScreenState extends State<MapScreen> {
   late Completer<GoogleMapController> _controller;
   late PlaceProvider provider;
   late CameraPosition initialCameraPosition;
-
   late TextEditingController placeController;
-  _handleTap(LatLng point) {
-    /*
-    setState(() {
-      debugPrint("========MapScreen->point: ${point.toString()}==========");
-      markers.add(Marker(
-        markerId: const MarkerId("1"),
-        position: point,
-        infoWindow: const InfoWindow(
-          title: 'hospital-location',
-        ),
-      ));
-    });
-  */
-  }
-
+  SearchType searchType = SearchType.none;
+  String? selectedService;
   LatLng? currentLocation;
   LatLng? endLocation;
   PolylinePoints polylinePoints = PolylinePoints();
@@ -58,6 +44,10 @@ class _MapScreenState extends State<MapScreen> {
   final StreamController<LatLng?> _streamController =
       StreamController.broadcast();
   List<LatLng> polygons = [];
+  final List<DropdownMenuItemModel> searchByList = [
+    DropdownMenuItemModel(text: "Name or Number", id: SearchType.numberOrName),
+    DropdownMenuItemModel(text: "Search by Service", id: SearchType.service)
+  ];
   @override
   void initState() {
     placeController = TextEditingController();
@@ -76,6 +66,20 @@ class _MapScreenState extends State<MapScreen> {
     super.initState();
   }
 
+  _handleTap(LatLng point) {
+    /*
+    setState(() {
+      debugPrint("========MapScreen->point: ${point.toString()}==========");
+      markers.add(Marker(
+        markerId: const MarkerId("1"),
+        position: point,
+        infoWindow: const InfoWindow(
+          title: 'hospital-location',
+        ),
+      ));
+    });
+  */
+  }
   Future<void> getDirections() async {
     List<LatLng> polylineCoordinates = [];
     if (currentLocation == null || endLocation == null) return;
@@ -139,10 +143,11 @@ class _MapScreenState extends State<MapScreen> {
     locationSubscription = location?.onLocationChanged
         .listen((LocationData currentLocation) async {
       debugPrint("====================================");
-      if (MapUtils.containsLocationAtLatLng(
+      if (true /*MapUtils.containsLocationAtLatLng(
           LatLng(currentLocation.latitude!, currentLocation.longitude!),
           polygons,
-          true)) {
+          true)*/
+          ) {
         this.currentLocation =
             LatLng(currentLocation.latitude!, currentLocation.longitude!);
         await getDirections();
@@ -174,7 +179,7 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   void dispose() {
-    placeController?.dispose();
+    placeController.dispose();
     _streamController.close();
     locationSubscription?.cancel();
     super.dispose();
@@ -182,7 +187,6 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    int searchType = -1;
     return SafeArea(
         child: Scaffold(
       resizeToAvoidBottomInset: false,
@@ -231,42 +235,71 @@ class _MapScreenState extends State<MapScreen> {
                   DropdownFieldWidget(
                       hintText: "Search by",
                       prefixIcon: const Icon(Icons.keyboard_arrow_down_rounded),
-                      items: [
-                        DropdownMenuItemModel(text: "Name or Number", id: 0),
-                        DropdownMenuItemModel(text: "Search by Service", id: 1)
-                      ],
+                      value: searchByList.firstWhereOrNull(
+                          (element) => element.id == searchType),
+                      items: searchByList,
                       onChanged: (value) {
                         setStateWidget(() {
-                          searchType = value?.id ?? -1;
+                          searchType = value!.id;
                         });
                       },
                       keyDropDown: GlobalKey()),
                   const SizedBox(height: SharedValues.padding),
-                  if (searchType == 0)
+                  if (searchType == SearchType.numberOrName)
                     TextFieldWidget(
-                        suggestions:
-                            provider.places.map((e) => e.name).toList(),
+                        suggestions: provider.places
+                            .map((e) => "${e.id} - ${e.name}")
+                            .toList(),
                         controller: placeController,
                         hintText: "Building name"),
-                  if (searchType == 1)
+                  if (searchType == SearchType.service)
                     DropdownFieldWidget(
                         hintText: "Select Service",
                         prefixIcon:
                             const Icon(Icons.keyboard_arrow_down_rounded),
                         items: [
-                          DropdownMenuItemModel(text: "11", id: 1),
-                          DropdownMenuItemModel(text: "22", id: 2)
+                          for (Place place
+                              in provider.places.distinctBy((e) => e.service))
+                            DropdownMenuItemModel(
+                                text: place.service, id: place.id),
                         ],
-                        onChanged: (value) {},
+                        onChanged: (value) {
+                          selectedService = value?.text;
+                        },
                         keyDropDown: GlobalKey()),
                   const SizedBox(height: SharedValues.padding * 4),
                   ButtonWidget(
                     onPressed: () async {
                       Navigator.pop(context);
-                      Place? place = provider.places.firstWhereOrNull(
-                          (element) => element.name == placeController.text);
-                      if (place?.latLng != null && place?.name != null) {
-                        await selectLocation(place!.latLng!, place.name);
+
+                      if (searchType == SearchType.numberOrName) {
+                        Place? place = provider.places.firstWhereOrNull(
+                            (element) => "${element.id} - ${element.name}" == placeController.text);
+                        if (place?.latLng != null && place?.name != null) {
+                          await selectLocation(place!.latLng!, place.name);
+                        }
+                      } else if (searchType == SearchType.service) {
+                     setState(() {
+                       markers.clear();
+                       markers.addAll(provider.places
+                           .where(
+                               (element) => element.service == selectedService)
+                           .map((e) => Marker(
+                         //add start location marker
+                         markerId:
+                         MarkerId(e.id.toString()),
+                         position:
+                         e.latLng!, //position of marker
+                         infoWindow: InfoWindow(
+                           //popup info
+                           title: e.name,
+                         ),
+                         onTap: () async {
+                           await selectLocation(e.latLng!, e.name);
+                         },
+                       ))
+                           .toList());
+                     });
                       }
                     },
                     child: Text("Search",
@@ -280,3 +313,5 @@ class _MapScreenState extends State<MapScreen> {
     ));
   }
 }
+
+enum SearchType { numberOrName, service, none }

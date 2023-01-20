@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:tu_smart_session/views/shared/shared_values.dart';
 
@@ -47,16 +49,20 @@ class _TextFieldWidgetState extends State<TextFieldWidget>
   OverlayEntry? _overlayEntry;
   late LayerLink _layerLink;
   FocusNode? _focusNode;
+  List<String> searchItem = [];
+  StreamController<List<String>>? _streamController;
 
   @override
   void initState() {
     if (widget.suggestions?.isNotEmpty == true) {
+      searchItem = widget.suggestions!;
+      _streamController = StreamController.broadcast();
       WidgetsBinding.instance.addObserver(this);
     }
     _layerLink = LayerLink();
     _focusNode = widget.focusNode ?? FocusNode();
     _focusNode?.addListener(() {
-      if (!_focusNode!.hasFocus) {
+      if (!_focusNode!.hasFocus && _overlayEntry?.mounted == true) {
         _overlayEntry?.remove();
       }
     });
@@ -75,8 +81,8 @@ class _TextFieldWidgetState extends State<TextFieldWidget>
             child: Material(
               child: Container(
                 height: 200,
-                margin:
-                    const EdgeInsetsDirectional.only(end: SharedValues.padding*2),
+                margin: const EdgeInsetsDirectional.only(
+                    end: SharedValues.padding * 2),
                 decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.background,
                     borderRadius:
@@ -87,31 +93,35 @@ class _TextFieldWidgetState extends State<TextFieldWidget>
                           blurRadius: 5,
                           spreadRadius: 5)
                     ]),
-                child: ListView(
-                  padding: const EdgeInsets.all(SharedValues.padding),
-                  children: [
-                    for (String item in widget.suggestions ?? [])
-                      InkWell(
-                        onTap: () {
-                          _overlayEntry?.remove();
-                          widget.controller.text=item;
-                        },
-                        child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                          const SizedBox(height: SharedValues.padding),
-                          Text(
-                            item,
-                            style: Theme.of(context).textTheme.headline3,
-                          ),
-                          const SizedBox(height: SharedValues.padding),
-                          const Divider(
-                            thickness: 2,
-                          ),
-                        ]),
-                      )
-                  ],
+                child: StreamBuilder<List<String>>(
+                  stream: _streamController?.stream,
+                  initialData: searchItem,
+                  builder: (context, snapshot) => ListView(
+                    padding: const EdgeInsets.all(SharedValues.padding),
+                    children: [
+                      for (String item in snapshot.data ?? [])
+                        InkWell(
+                          onTap: () {
+                            _overlayEntry?.remove();
+                            widget.controller.text = item;
+                          },
+                          child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(height: SharedValues.padding),
+                                Text(
+                                  item,
+                                  style: Theme.of(context).textTheme.headline3,
+                                ),
+                                const SizedBox(height: SharedValues.padding),
+                                const Divider(
+                                  thickness: 2,
+                                ),
+                              ]),
+                        )
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -125,7 +135,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget>
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     _focusNode?.dispose();
-
+    _streamController?.close();
     super.dispose();
   }
 
@@ -138,7 +148,17 @@ class _TextFieldWidgetState extends State<TextFieldWidget>
         child: TextFormField(
           textInputAction: widget.textInputAction,
           validator: widget.validator,
-          onChanged: widget.onChanged,
+          onChanged: (value) {
+            if (widget.suggestions?.isNotEmpty == true) {
+              _streamController?.add(widget.suggestions
+                      ?.where((element) =>
+                          element.toUpperCase().contains(value.toUpperCase()))
+                      .toList() ??
+                  []);
+            } else if (widget.onChanged != null) {
+              widget.onChanged!(value);
+            }
+          },
           maxLines: widget.maxLines ?? 1,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           textDirection: widget.textDirection,
