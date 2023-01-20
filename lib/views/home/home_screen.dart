@@ -21,11 +21,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      SharedComponents.showOverlayLoading(context, ()async{
-        await Provider.of<AuthProvider>(context,listen: false).getUserData();
-      });
-    });
+    //TODO: Uncomment
+    // WidgetsBinding.instance.addPostFrameCallback((_) async {
+    //   SharedComponents.showOverlayLoading(context, ()async{
+    //     await Provider.of<AuthProvider>(context,listen: false).getUserData();
+    //   });
+    // });
     super.initState();
   }
   @override

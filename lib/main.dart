@@ -19,6 +19,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'data/providers/ask_cody_provider.dart';
 import 'firebase_options.dart';
 //TODO: Configuration iOS url_launcher
+//TODO: Configuration iOS location
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();

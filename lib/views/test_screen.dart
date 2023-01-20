@@ -13,149 +13,149 @@ class _TestScreenState extends State<TestScreen> {
   final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
 
   Future setData() async {
-    final gymCard = [
-      {
-        "id": 43900893,
-        "name": "Atheer Abdulaziz Alsufyani ",
-      },
-      {
-        "expire": "2023-12-08 00:00:00.000",
-        "id": 43900889,
-        "joining": "2023-13-06 00:00:00.000",
-        "name": "Shahad Salih Alazwari "
-      },
-      {
-        "expire": "2023-12-08 00:00:00.000",
-        "id": 43905767,
-        "joining": "2023-13-06 00:00:00.000",
-        "name": "Atheer Dhaifallah alharthi"
-      },
-      {
-        "expire": "2022-02-07 00:00:00.000",
-        "id": 43901447,
-        "joining": "2022-02-05 00:00:00.000",
-        "name": "Rana Ahmad Alkhamash"
-      },
-      {
-        "id": 43902129,
-        "name": "Raghad Manwer Algethami",
-      },
-      {
-        "id": 43901231,
-        "name": "Rawan Dhaifallah Alsuwat",
-      }
-    ];
-    for (var item in gymCard) {
-      await _fireStore.collection("gym-card").add(item);
-    }
-
-    final healthCard = [
-      {
-        "department": "Computer science",
-        "id": 43900893,
-        "email": "atheer3zizz@gmail.com",
-        "academic degree": "Bachelor",
-        "college": "Computers and information technology",
-        "name": "Atheer Abdulaziz Alsufyani"
-      },
-      {
-        "department": "Computer science",
-        "id": 43900889,
-        "email": "ShooOoosh159753@gmail.com",
-        "academic degree": "Bachelor",
-        "college": "Computers and information technology",
-        "name": "Shahad Salih Alazwari"
-      },
-      {
-        "department": "Computer science",
-        "id": 43905767,
-        "email": "atheeerart@gmail.com",
-        "academic degree": "Bachelor",
-        "college": "Computers and information technology",
-        "name": "Atheer Dhaifallah alharthi"
-      },
-      {
-        "department": "Computer science",
-        "id": 43901447,
-        "email": "rnaalkhmash4@gmail.com",
-        "academic degree": "Bachelor",
-        "college": "Computers and information technology",
-        "name": "Rana Ahmad Alkhamash"
-      },
-      {
-        "department": "Computer science",
-        "id": 43902129,
-        "email": "ragh93310@gmail.com",
-        "academic degree": "Bachelor",
-        "college": "Computers and information technology",
-        "name": "Raghad Manwer Algethami"
-      },
-      {
-        "department": "Computer science",
-        "id": 43901231,
-        "email": "rawanalsuwat12@gmail.com",
-        "academic degree": "Bachelor",
-        "college": "Computers and information technology",
-        "name": "Rawan Dhiafallah Alsuwat",
-      }
-    ];
-    for (var item in healthCard) {
-      await _fireStore.collection("health-card").add(item);
-    }
-
-    final universityCard = [
-      {
-        "department": "Computer science",
-        "id": 43900893,
-        "email": "atheer3zizz@gmail.com",
-        "academic-degree": "Bachelor",
-        "college": "Computers and information technology",
-        "name": "Atheer Abdulaziz Alsufyani"
-      },
-      {
-        "department": "Computer science",
-        "id": 43900889,
-        "email": "ShooOoosh159753@gmail.com",
-        "academic-degree": "Bachelor",
-        "college": "Computers and information technology",
-        "name": "Shahad Salih Alazwari"
-      },
-      {
-        "department": "Computer science",
-        "id": 43905767,
-        "email": "atheeerart@gmail.com",
-        "academic-degree": "Bachelor",
-        "college": "Computers and information technology",
-        "name": "Atheer Dhaifallah alharthi"
-      },
-      {
-        "department": "Computer science",
-        "id": 43901447,
-        "email": "rnaalkhmash4@gmail.com",
-        "academic-degree": "Bachelor",
-        "college": "Computers and information technology",
-        "name": "Rana Ahmad Alkhamash"
-      },
-      {
-        "department": "Computer science",
-        "id": 43902129,
-        "email": "ragh93310@gmail.com",
-        "academic-degree": "Bachelor",
-        "college": "Computers and information technology",
-        "name": "Raghad Manwer Algethami"
-      },
-      {
-        "department": "Computer science",
-        "id": 43901231,
-        "email": "rawanalsuwat12@gmail.com",
-        "academic-degree": "Bachelor",
-        "college": "Computers and information technology",
-        "name": "Rawan Dhiafallah Alsuwat",
-      }
-    ];
-    for (var item in universityCard) {
-      await _fireStore.collection("university-card").add(item);
-    }
+    // final gymCard = [
+    //   {
+    //     "id": 43900893,
+    //     "name": "Atheer Abdulaziz Alsufyani ",
+    //   },
+    //   {
+    //     "expire": "2023-12-08 00:00:00.000",
+    //     "id": 43900889,
+    //     "joining": "2023-13-06 00:00:00.000",
+    //     "name": "Shahad Salih Alazwari "
+    //   },
+    //   {
+    //     "expire": "2023-12-08 00:00:00.000",
+    //     "id": 43905767,
+    //     "joining": "2023-13-06 00:00:00.000",
+    //     "name": "Atheer Dhaifallah alharthi"
+    //   },
+    //   {
+    //     "expire": "2022-02-07 00:00:00.000",
+    //     "id": 43901447,
+    //     "joining": "2022-02-05 00:00:00.000",
+    //     "name": "Rana Ahmad Alkhamash"
+    //   },
+    //   {
+    //     "id": 43902129,
+    //     "name": "Raghad Manwer Algethami",
+    //   },
+    //   {
+    //     "id": 43901231,
+    //     "name": "Rawan Dhaifallah Alsuwat",
+    //   }
+    // ];
+    // for (var item in gymCard) {
+    //   await _fireStore.collection("gym-card").add(item);
+    // }
+    //
+    // final healthCard = [
+    //   {
+    //     "department": "Computer science",
+    //     "id": 43900893,
+    //     "email": "atheer3zizz@gmail.com",
+    //     "academic degree": "Bachelor",
+    //     "college": "Computers and information technology",
+    //     "name": "Atheer Abdulaziz Alsufyani"
+    //   },
+    //   {
+    //     "department": "Computer science",
+    //     "id": 43900889,
+    //     "email": "ShooOoosh159753@gmail.com",
+    //     "academic degree": "Bachelor",
+    //     "college": "Computers and information technology",
+    //     "name": "Shahad Salih Alazwari"
+    //   },
+    //   {
+    //     "department": "Computer science",
+    //     "id": 43905767,
+    //     "email": "atheeerart@gmail.com",
+    //     "academic degree": "Bachelor",
+    //     "college": "Computers and information technology",
+    //     "name": "Atheer Dhaifallah alharthi"
+    //   },
+    //   {
+    //     "department": "Computer science",
+    //     "id": 43901447,
+    //     "email": "rnaalkhmash4@gmail.com",
+    //     "academic degree": "Bachelor",
+    //     "college": "Computers and information technology",
+    //     "name": "Rana Ahmad Alkhamash"
+    //   },
+    //   {
+    //     "department": "Computer science",
+    //     "id": 43902129,
+    //     "email": "ragh93310@gmail.com",
+    //     "academic degree": "Bachelor",
+    //     "college": "Computers and information technology",
+    //     "name": "Raghad Manwer Algethami"
+    //   },
+    //   {
+    //     "department": "Computer science",
+    //     "id": 43901231,
+    //     "email": "rawanalsuwat12@gmail.com",
+    //     "academic degree": "Bachelor",
+    //     "college": "Computers and information technology",
+    //     "name": "Rawan Dhiafallah Alsuwat",
+    //   }
+    // ];
+    // for (var item in healthCard) {
+    //   await _fireStore.collection("health-card").add(item);
+    // }
+    //
+    // final universityCard = [
+    //   {
+    //     "department": "Computer science",
+    //     "id": 43900893,
+    //     "email": "atheer3zizz@gmail.com",
+    //     "academic-degree": "Bachelor",
+    //     "college": "Computers and information technology",
+    //     "name": "Atheer Abdulaziz Alsufyani"
+    //   },
+    //   {
+    //     "department": "Computer science",
+    //     "id": 43900889,
+    //     "email": "ShooOoosh159753@gmail.com",
+    //     "academic-degree": "Bachelor",
+    //     "college": "Computers and information technology",
+    //     "name": "Shahad Salih Alazwari"
+    //   },
+    //   {
+    //     "department": "Computer science",
+    //     "id": 43905767,
+    //     "email": "atheeerart@gmail.com",
+    //     "academic-degree": "Bachelor",
+    //     "college": "Computers and information technology",
+    //     "name": "Atheer Dhaifallah alharthi"
+    //   },
+    //   {
+    //     "department": "Computer science",
+    //     "id": 43901447,
+    //     "email": "rnaalkhmash4@gmail.com",
+    //     "academic-degree": "Bachelor",
+    //     "college": "Computers and information technology",
+    //     "name": "Rana Ahmad Alkhamash"
+    //   },
+    //   {
+    //     "department": "Computer science",
+    //     "id": 43902129,
+    //     "email": "ragh93310@gmail.com",
+    //     "academic-degree": "Bachelor",
+    //     "college": "Computers and information technology",
+    //     "name": "Raghad Manwer Algethami"
+    //   },
+    //   {
+    //     "department": "Computer science",
+    //     "id": 43901231,
+    //     "email": "rawanalsuwat12@gmail.com",
+    //     "academic-degree": "Bachelor",
+    //     "college": "Computers and information technology",
+    //     "name": "Rawan Dhiafallah Alsuwat",
+    //   }
+    // ];
+    // for (var item in universityCard) {
+    //   await _fireStore.collection("university-card").add(item);
+    // }
 
     // final questions = [
     //   {
@@ -370,21 +370,32 @@ class _TestScreenState extends State<TestScreen> {
     //   await _fireStore.collection("questions").add(item);
     // }
     //
-    // final advisors = [
-    //   {
-    //     "id": 1,
-    //     "name": "Bara Abdullah",
-    //     "user-name": "essashehab99",
-    //   },
-    //   {
-    //     "id": 2,
-    //     "name": "Ahmed Ali Abdullah",
-    //     "user-name": "test11",
-    //   },
-    // ];
-    // for (var item in advisors) {
-    //   await _fireStore.collection("advisor").add(item);
-    // }
+    final advisors = [
+      {
+        "id": 12207,
+        "name": "Dr. Wael Yousef Alghamdi",
+        "user-name": "w.alghamdi",
+        "email": "Communication with academic staff",
+        "office-hours": "Tuesday : 11:00 - 12:00 , Thursday : 10:00 - 11:00",
+      },
+      {
+        "id": 7111,
+        "name": "Dr. Rajwa abduallh Alharthi",
+        "user-name": "w.alghamdi@tu.edu.sa",
+        "email": "Communication with academic staff",
+        "office-hours": "Wednesday : 11:00 - 12:00 , Friday : 10:00 - 11:00",
+      },
+      {
+        "id": 12207,
+        "name": "Dr. Abdulmajeed Alsufyani",
+        "user-name": "a.s.alsufyani",
+        "email": "a.s.alsufyani@tu.edu.sa",
+        "office-hours": "Friday : 8:00 - 9:00 , Thursday : 1:00 - 2:00",
+      },
+    ];
+    for (var item in advisors) {
+      await _fireStore.collection("advisor").add(item);
+    }
     //
     // final levels = [
     //   {
@@ -1123,73 +1134,6 @@ class _TestScreenState extends State<TestScreen> {
     // ];
     // for (var item in subjects) {
     //   await _fireStore.collection("subjects").add(item);
-    // }
-    //
-    // final library = [
-    //   {
-    //     "id": 1,
-    //     "name": "Digital library training course request form",
-    //     "url":
-    //         "https://www.tu.edu.sa/Attachments/7615aec0-d470-400f-801e-a374e8a59cce_.pdf"
-    //   },
-    //   {
-    //     "id": 2,
-    //     "name": "Audio book equipment borrowing form",
-    //     "url":
-    //         "https://www.tu.edu.sa/Attachments/125d134d-9418-45ae-acd1-affe8e6ac2cb_.pdf"
-    //   },
-    //   {
-    //     "id": 3,
-    //     "name": "Book proposal template",
-    //     "url":
-    //         "https://www.tu.edu.sa/Attachments/42417ee0-39eb-4ccd-bc67-49a03e674762_.pdf"
-    //   },
-    //   {
-    //     "id": 4,
-    //     "name": "Induction program evaluation form",
-    //     "url":
-    //         "https://www.tu.edu.sa/Attachments/420e14ce-3c1a-4705-921e-a949ceb344b4_.pdf"
-    //   },
-    //   {
-    //     "id": 5,
-    //     "name": "Course evaluation form",
-    //     "url":
-    //         "https://www.tu.edu.sa/Attachments/69cba306-ee44-4197-89cd-74b9f46d4d28_.pdf"
-    //   },
-    //   {
-    //     "id": 6,
-    //     "name": "Form of booking a hall or study vacancy",
-    //     "url":
-    //         "https://www.tu.edu.sa/Attachments/45c3c02e-b3d2-4006-8076-81c344af03fc_.pdf"
-    //   },
-    //   {
-    //     "id": 7,
-    //     "name":
-    //         "Hall reservation form in the central library in the male students' section",
-    //     "url":
-    //         "https://www.tu.edu.sa/Attachments/971642f2-e4db-4041-a3a2-6b8d1a723ed1_.pdf"
-    //   },
-    //   {
-    //     "id": 8,
-    //     "name": "Central Library visit form",
-    //     "url":
-    //         "https://www.tu.edu.sa/Attachments/9f600428-e780-48b6-8402-97f747e6cc4f_.pdf"
-    //   },
-    //   {
-    //     "id": 9,
-    //     "name": "Training course request form",
-    //     "url":
-    //         "https://www.tu.edu.sa/Attachments/0b2db766-a203-4dde-bbbf-d91bff14aa87_.pdf"
-    //   },
-    //   {
-    //     "id": 10,
-    //     "name": "Information request form",
-    //     "url":
-    //         "https://www.tu.edu.sa/Attachments/558c4085-95fb-47dd-90eb-c483741dab4a_.pdf"
-    //   }
-    // ];
-    // for (var item in library) {
-    //   await _fireStore.collection("library").add(item);
     // }
     //
     // final sections = [
