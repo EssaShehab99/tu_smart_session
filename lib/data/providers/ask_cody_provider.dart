@@ -125,7 +125,7 @@ class AskCodyProvider extends ChangeNotifier {
   Future<Result> addSubject() async {
     _user!.studentSubjects = [
       ...?_user!.studentSubjects,
-      StudentSubject(id: subject!.id, section: this.section!.id, taken: false)
+      StudentSubject(id: subject!.id, section: section!.id, taken: false)
     ];
     return await _authRepository.updateUser(_user!);
   }

@@ -77,6 +77,7 @@ class AuthApi {
       rethrow;
     }
   }
+
   Future<bool> updateUser(String id,Map<String, dynamic> body) async {
     try {
       final response=  await _fireStore
