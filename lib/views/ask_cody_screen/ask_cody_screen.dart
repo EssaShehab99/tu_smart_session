@@ -20,7 +20,7 @@ class AskCodyScreen extends StatefulWidget {
 class _AskCodyScreenState extends State<AskCodyScreen> {
   late TextEditingController _messageController;
   ScrollController? _scrollController;
-  late FocusNode focusNode;
+  FocusNode? focusNode;
   List<int>? questionsId;
   Questions? selectedQuestion;
   List<String>? command;
@@ -36,7 +36,7 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
 
   @override
   void dispose() {
-    focusNode.dispose();
+    focusNode?.dispose();
     _messageController.dispose();
     super.dispose();
   }
@@ -106,7 +106,7 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
                                         onPressed: () async {
                                           if (hintText ==
                                               "Please enter subject ID") {
-                                            focusNode.unfocus();
+                                            focusNode?.unfocus();
                                             hintText = null;
                                             provider.changeReadOnly(true);
                                             await Future.delayed(
@@ -120,7 +120,7 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
                                                 count++;
                                                 hintText = command?.get(count);
                                                 provider.changeReadOnly(false);
-                                                focusNode.requestFocus();
+                                                focusNode?.requestFocus();
                                               } else if (selectedQuestion?.id ==
                                                   11) {
                                                 Result result = await provider
@@ -276,7 +276,7 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
                       var x=0;
                     }
                   } else if (question.type?.contains("dependent") == true) {
-                    focusNode.unfocus();
+                    focusNode?.unfocus();
                     _messageController.text = "";
                     provider.changeReadOnly(true);
                     count = 0;
@@ -285,7 +285,7 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
                       hintText = command?.get(count);
                       await Future.delayed(const Duration(milliseconds: 250));
                       provider.changeReadOnly(false);
-                      focusNode.requestFocus();
+                      focusNode?.requestFocus();
                     }
                   }
                   else if (question.type?.contains("url") == true &&

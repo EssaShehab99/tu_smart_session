@@ -121,7 +121,8 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   Future<void> getPermissions() async {
-    location = Location();
+    location = Location.instance;
+    location?.enableBackgroundMode(enable: false);
     bool? serviceEnabled;
     PermissionStatus? permissionGranted;
 
@@ -142,6 +143,7 @@ class _MapScreenState extends State<MapScreen> {
     }
     locationSubscription = location?.onLocationChanged
         .listen((LocationData currentLocation) async {
+          if(!mounted)return;
       debugPrint("====================================");
       if (true /*MapUtils.containsLocationAtLatLng(
           LatLng(currentLocation.latitude!, currentLocation.longitude!),
@@ -182,135 +184,142 @@ class _MapScreenState extends State<MapScreen> {
     placeController.dispose();
     _streamController.close();
     locationSubscription?.cancel();
+    location=null;
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
+        child: WillPopScope(
+          onWillPop:   () async{
+            locationSubscription?.cancel();
+            return true;
+          },
+          child: Scaffold(
       resizeToAvoidBottomInset: false,
       body: Stack(
-        children: [
-          StreamBuilder<LatLng?>(
-              stream: _streamController.stream,
-              builder: (context, snapshot) {
-                return GoogleMap(
-                  markers: Set<Marker>.of(markers),
-                  polylines: Set<Polyline>.of(polylines.values), //polylines
-                  polygons: myPolygon(),
-                  mapType: MapType.normal,
-                  zoomControlsEnabled: true,
-                  myLocationButtonEnabled: true,
-                  myLocationEnabled: true,
-                  gestureRecognizers: Set()
-                    ..add(Factory<PanGestureRecognizer>(
-                        () => PanGestureRecognizer()))
-                    ..add(Factory<ScaleGestureRecognizer>(
-                        () => ScaleGestureRecognizer()))
-                    ..add(Factory<TapGestureRecognizer>(
-                        () => TapGestureRecognizer()))
-                    ..add(Factory<VerticalDragGestureRecognizer>(
-                        () => VerticalDragGestureRecognizer())),
-                  initialCameraPosition: initialCameraPosition,
-                  onMapCreated: (GoogleMapController controller) {
-                    _controller.complete(controller);
-                  },
-                  onTap: _handleTap,
-                );
-              }),
-          SharedComponents.appBar("Campus Map"),
-        ],
+          children: [
+            StreamBuilder<LatLng?>(
+                stream: _streamController.stream,
+                builder: (context, snapshot) {
+                  return GoogleMap(
+                    markers: Set<Marker>.of(markers),
+                    polylines: Set<Polyline>.of(polylines.values), //polylines
+                    polygons: myPolygon(),
+                    mapType: MapType.normal,
+                    zoomControlsEnabled: true,
+                    myLocationButtonEnabled: true,
+                    myLocationEnabled: true,
+                    gestureRecognizers: Set()
+                      ..add(Factory<PanGestureRecognizer>(
+                          () => PanGestureRecognizer()))
+                      ..add(Factory<ScaleGestureRecognizer>(
+                          () => ScaleGestureRecognizer()))
+                      ..add(Factory<TapGestureRecognizer>(
+                          () => TapGestureRecognizer()))
+                      ..add(Factory<VerticalDragGestureRecognizer>(
+                          () => VerticalDragGestureRecognizer())),
+                    initialCameraPosition: initialCameraPosition,
+                    onMapCreated: (GoogleMapController controller) {
+                      _controller.complete(controller);
+                    },
+                    onTap: _handleTap,
+                  );
+                }),
+            SharedComponents.appBar("Campus Map"),
+          ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            SharedComponents.showBottomSheet(context,
-                height: MediaQuery.of(context).size.height,
-                child: StatefulBuilder(builder: (context, setStateWidget) {
-              return ListView(
-                physics: const NeverScrollableScrollPhysics(),
-                padding: const EdgeInsets.all(SharedValues.padding),
-                children: [
-                  DropdownFieldWidget(
-                      hintText: "Search by",
-                      prefixIcon: const Icon(Icons.keyboard_arrow_down_rounded),
-                      value: searchByList.firstWhereOrNull(
-                          (element) => element.id == searchType),
-                      items: searchByList,
-                      onChanged: (value) {
-                        setStateWidget(() {
-                          searchType = value!.id;
-                        });
-                      },
-                      keyDropDown: GlobalKey()),
-                  const SizedBox(height: SharedValues.padding),
-                  if (searchType == SearchType.numberOrName)
-                    TextFieldWidget(
-                        suggestions: provider.places
-                            .map((e) => "${e.id} - ${e.name}")
-                            .toList(),
-                        controller: placeController,
-                        hintText: "Building name"),
-                  if (searchType == SearchType.service)
+            onPressed: () {
+              SharedComponents.showBottomSheet(context,
+                  height: MediaQuery.of(context).size.height,
+                  child: StatefulBuilder(builder: (context, setStateWidget) {
+                return ListView(
+                  physics: const NeverScrollableScrollPhysics(),
+                  padding: const EdgeInsets.all(SharedValues.padding),
+                  children: [
                     DropdownFieldWidget(
-                        hintText: "Select Service",
-                        prefixIcon:
-                            const Icon(Icons.keyboard_arrow_down_rounded),
-                        items: [
-                          for (Place place
-                              in provider.places.distinctBy((e) => e.service))
-                            DropdownMenuItemModel(
-                                text: place.service, id: place.id),
-                        ],
+                        hintText: "Search by",
+                        prefixIcon: const Icon(Icons.keyboard_arrow_down_rounded),
+                        value: searchByList.firstWhereOrNull(
+                            (element) => element.id == searchType),
+                        items: searchByList,
                         onChanged: (value) {
-                          selectedService = value?.text;
+                          setStateWidget(() {
+                            searchType = value!.id;
+                          });
                         },
                         keyDropDown: GlobalKey()),
-                  const SizedBox(height: SharedValues.padding * 4),
-                  ButtonWidget(
-                    onPressed: () async {
-                      Navigator.pop(context);
+                    const SizedBox(height: SharedValues.padding),
+                    if (searchType == SearchType.numberOrName)
+                      TextFieldWidget(
+                          suggestions: provider.places
+                              .map((e) => "${e.id} - ${e.name}")
+                              .toList(),
+                          controller: placeController,
+                          hintText: "Building name"),
+                    if (searchType == SearchType.service)
+                      DropdownFieldWidget(
+                          hintText: "Select Service",
+                          prefixIcon:
+                              const Icon(Icons.keyboard_arrow_down_rounded),
+                          items: [
+                            for (Place place
+                                in provider.places.distinctBy((e) => e.service))
+                              DropdownMenuItemModel(
+                                  text: place.service, id: place.id),
+                          ],
+                          onChanged: (value) {
+                            selectedService = value?.text;
+                          },
+                          keyDropDown: GlobalKey()),
+                    const SizedBox(height: SharedValues.padding * 4),
+                    ButtonWidget(
+                      onPressed: () async {
+                        Navigator.pop(context);
 
-                      if (searchType == SearchType.numberOrName) {
-                        Place? place = provider.places.firstWhereOrNull(
-                            (element) => "${element.id} - ${element.name}" == placeController.text);
-                        if (place?.latLng != null && place?.name != null) {
-                          await selectLocation(place!.latLng!, place.name);
+                        if (searchType == SearchType.numberOrName) {
+                          Place? place = provider.places.firstWhereOrNull(
+                              (element) => "${element.id} - ${element.name}" == placeController.text);
+                          if (place?.latLng != null && place?.name != null) {
+                            await selectLocation(place!.latLng!, place.name);
+                          }
+                        } else if (searchType == SearchType.service) {
+                       setState(() {
+                         markers.clear();
+                         markers.addAll(provider.places
+                             .where(
+                                 (element) => element.service == selectedService)
+                             .map((e) => Marker(
+                           //add start location marker
+                           markerId:
+                           MarkerId(e.id.toString()),
+                           position:
+                           e.latLng!, //position of marker
+                           infoWindow: InfoWindow(
+                             //popup info
+                             title: e.name,
+                           ),
+                           onTap: () async {
+                             await selectLocation(e.latLng!, e.name);
+                           },
+                         ))
+                             .toList());
+                       });
                         }
-                      } else if (searchType == SearchType.service) {
-                     setState(() {
-                       markers.clear();
-                       markers.addAll(provider.places
-                           .where(
-                               (element) => element.service == selectedService)
-                           .map((e) => Marker(
-                         //add start location marker
-                         markerId:
-                         MarkerId(e.id.toString()),
-                         position:
-                         e.latLng!, //position of marker
-                         infoWindow: InfoWindow(
-                           //popup info
-                           title: e.name,
-                         ),
-                         onTap: () async {
-                           await selectLocation(e.latLng!, e.name);
-                         },
-                       ))
-                           .toList());
-                     });
-                      }
-                    },
-                    child: Text("Search",
-                        style: Theme.of(context).textTheme.button),
-                  )
-                ],
-              );
-            }));
-          },
-          child: const Icon(Icons.search_outlined)),
-    ));
+                      },
+                      child: Text("Search",
+                          style: Theme.of(context).textTheme.button),
+                    )
+                  ],
+                );
+              }));
+            },
+            child: const Icon(Icons.search_outlined)),
+    ),
+        ));
   }
 }
 

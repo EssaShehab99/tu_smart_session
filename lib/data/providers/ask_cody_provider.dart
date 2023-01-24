@@ -97,7 +97,7 @@ class AskCodyProvider extends ChangeNotifier {
                 ?.where(
                     (element) => element.id == reqSub && element.taken == true)
                 .isEmpty ??
-            false) {
+            true) {
           return Error("You must finish requirements");
         }
       }

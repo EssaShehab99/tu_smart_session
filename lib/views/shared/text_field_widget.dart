@@ -64,11 +64,11 @@ class _TextFieldWidgetState extends State<TextFieldWidget>
     _focusNode?.addListener(() {
       if (!_focusNode!.hasFocus && _overlayEntry?.mounted == true) {
         _overlayEntry?.remove();
+        _overlayEntry = null;
       }
     });
     super.initState();
   }
-
   OverlayEntry _createOverlayEntry(ctx) {
     return OverlayEntry(builder: (context) {
       return Positioned(
@@ -103,6 +103,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget>
                         InkWell(
                           onTap: () {
                             _overlayEntry?.remove();
+                            _overlayEntry = null;
                             widget.controller.text = item;
                           },
                           child: Column(
@@ -168,7 +169,8 @@ class _TextFieldWidgetState extends State<TextFieldWidget>
           onTap: () {
             debugPrint(
                 "===============TextFieldWidget->build->widget.suggestions: ${widget.suggestions.toString()}=================");
-            if (widget.suggestions?.isNotEmpty == true) {
+            if (widget.suggestions?.isNotEmpty == true &&
+                _overlayEntry == null) {
               _overlayEntry = _createOverlayEntry(context);
               Overlay.of(context)?.insert(_overlayEntry!);
             } else if (widget.onTap != null) {
