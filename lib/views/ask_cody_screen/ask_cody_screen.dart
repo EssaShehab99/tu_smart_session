@@ -50,7 +50,7 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SharedComponents.appBar("Digital Wallet"),
+          SharedComponents.appBar("Ask Cody"),
           Expanded(
             child: FutureBuilder(
                 future: provider.getQuestions(),
@@ -273,7 +273,6 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
                       ));
                       await Future.delayed(const Duration(milliseconds: 250));
                       provider.repeatQuestions(questionsId!);
-                      var x=0;
                     }
                   } else if (question.type?.contains("dependent") == true) {
                     focusNode?.unfocus();
@@ -316,7 +315,7 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
                         color: question.myMessage
                             ? Theme.of(context).colorScheme.onPrimary
                             : null,
-                        decoration: question.group == 2
+                        decoration: question.group == 2&&question.myMessage!=true&&question.type!=null
                             ? TextDecoration.underline
                             : null),
                   ),

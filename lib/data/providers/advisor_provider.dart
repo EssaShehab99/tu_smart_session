@@ -9,7 +9,6 @@ class AdvisorProvider extends ChangeNotifier {
   final _advisorRepository = getIt.get<AdvisorRepository>();
   Advisor? advisor;
   Future<Result> getAdvisor(String userName) async {
-    debugPrint("==========AskCodyRepository->getQuestions->|| ==========");
     Result result = await _advisorRepository.getAdvisor(userName);
     if (result is Success) {
       advisor = result.value;

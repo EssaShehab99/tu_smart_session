@@ -12,7 +12,6 @@ class AskCodyRepository {
   AskCodyRepository(this._askCodyApi);
 
   Future<Result> getQuestions(User? user) async {
-    debugPrint("==========AskCodyRepository->getQuestions->|| ==========");
     try {
       final response = await _askCodyApi.getQuestions();
       final questions =

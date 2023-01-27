@@ -66,6 +66,7 @@ class AuthApi {
       rethrow;
     }
   }
+
   Future<QueryDocumentSnapshot<Map<String, dynamic>>?> checkUser(int id) async {
     try {
       final response=  await _fireStore

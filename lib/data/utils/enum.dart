@@ -1,0 +1,4 @@
+enum PlaceType{
+  building,
+  service
+}

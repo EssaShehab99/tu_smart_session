@@ -11,6 +11,7 @@ import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 import 'package:tu_smart_session/data/models/place.dart';
 import 'package:tu_smart_session/data/providers/place_provider.dart';
+import 'package:tu_smart_session/data/utils/enum.dart';
 import 'package:tu_smart_session/data/utils/map_utils.dart';
 import '/views/shared/button_widget.dart';
 import '/views/shared/dropdown_field_widget.dart';
@@ -255,7 +256,7 @@ class _MapScreenState extends State<MapScreen> {
                     const SizedBox(height: SharedValues.padding),
                     if (searchType == SearchType.numberOrName)
                       TextFieldWidget(
-                          suggestions: provider.places
+                          suggestions: provider.places.where((element) => element.placeType==PlaceType.building)
                               .map((e) => "${e.id} - ${e.name}")
                               .toList(),
                           controller: placeController,
@@ -267,9 +268,9 @@ class _MapScreenState extends State<MapScreen> {
                               const Icon(Icons.keyboard_arrow_down_rounded),
                           items: [
                             for (Place place
-                                in provider.places.distinctBy((e) => e.service))
+                                in provider.places.where((element) => element.placeType==PlaceType.service))
                               DropdownMenuItemModel(
-                                  text: place.service, id: place.id),
+                                  text: place.name, id: place.id),
                           ],
                           onChanged: (value) {
                             selectedService = value?.text;
@@ -282,11 +283,17 @@ class _MapScreenState extends State<MapScreen> {
 
                         if (searchType == SearchType.numberOrName) {
                           Place? place = provider.places.firstWhereOrNull(
-                              (element) => "${element.id} - ${element.name}" == placeController.text);
+                              (element) =>  "${element.id} - ${element.name}"== placeController.text);
                           if (place?.latLng != null && place?.name != null) {
                             await selectLocation(place!.latLng!, place.name);
                           }
                         } else if (searchType == SearchType.service) {
+                          Place? place = provider.places.firstWhereOrNull(
+                                  (element) =>  element.name== selectedService);
+                          if (place?.latLng != null && place?.name != null) {
+                            await selectLocation(place!.latLng!, place.name);
+                          }
+                          /*
                        setState(() {
                          markers.clear();
                          markers.addAll(provider.places
@@ -308,7 +315,7 @@ class _MapScreenState extends State<MapScreen> {
                          ))
                              .toList());
                        });
-                        }
+                        */}
                       },
                       child: Text("Search",
                           style: Theme.of(context).textTheme.button),

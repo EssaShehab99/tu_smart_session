@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 builder: (context) => const AskCodyScreen()));
 
                       },
-                      text: "Cody Chatbot", image: AssetsVariable.bot),
+                      text: "Ask Cody", image: AssetsVariable.bot),
                 ),
               ],
             ),

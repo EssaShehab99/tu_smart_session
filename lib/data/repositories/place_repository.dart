@@ -12,7 +12,7 @@ class PlaceRepository {
   PlaceRepository(this._placeApi);
 
   Future<Result> getPlaces() async {
-    debugPrint("==========AskCodyRepository->getQuestions->|| ==========");
+    debugPrint("==========PlaceRepository->getPlaces->|| ==========");
     try {
       final response = await _placeApi.getPlaces();
       return Success(response.map((e) => Place.fromJson(e.data())).toList());
@@ -21,7 +21,7 @@ class PlaceRepository {
     }
   }
   Future<Result> getRouteBetweenCoordinates(LatLng start, LatLng end) async {
-    debugPrint("==========AskCodyRepository->getQuestions->|| ==========");
+    debugPrint("==========PlaceRepository->getRouteBetweenCoordinates->|| ==========");
     try {
 
       final response = await _placeApi.getRouteBetweenCoordinates(start.latitude, start.longitude, end.latitude, end.longitude);

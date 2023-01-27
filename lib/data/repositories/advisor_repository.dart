@@ -10,7 +10,6 @@ class AdvisorRepository {
   AdvisorRepository(this._advisorApi);
 
   Future<Result> getAdvisor(String userName) async {
-    debugPrint("==========AskCodyRepository->getQuestions->|| ==========");
     try {
       final response = await _advisorApi.getAdvisor(userName);
       return Success(Advisor.fromJson(response.data()));
