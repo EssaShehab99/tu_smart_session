@@ -60,6 +60,12 @@ class _AdvisorScreenState extends State<AdvisorScreen> {
                 TextFieldWidget(
                   controller: userName,
                   hintText: "Username",
+                  validator: (value) {
+                    if (value != null && value.isNotEmpty) {
+                      return null;
+                    }
+                    return "This field is required";
+                  },
                 ),
                 const SizedBox(height: SharedValues.padding * 4),
                 ButtonWidget(

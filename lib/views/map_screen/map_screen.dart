@@ -146,10 +146,10 @@ class _MapScreenState extends State<MapScreen> {
         .listen((LocationData currentLocation) async {
           if(!mounted)return;
       debugPrint("====================================");
-      if (true /*MapUtils.containsLocationAtLatLng(
+      if (MapUtils.containsLocationAtLatLng(
           LatLng(currentLocation.latitude!, currentLocation.longitude!),
           polygons,
-          true)*/
+          true)
           ) {
         this.currentLocation =
             LatLng(currentLocation.latitude!, currentLocation.longitude!);

@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tu_smart_session/data/providers/place_provider.dart';
 import 'package:tu_smart_session/views/info_screen/info_screen.dart';
+import 'package:tu_smart_session/views/test_screen.dart';
 import '/data/providers/advisor_provider.dart';
 import '/data/local/sharedpref_helper/preferences.dart';
 import '/data/models/user.dart';
@@ -63,6 +64,7 @@ class MyApp extends StatelessWidget {
         locale: context.locale,
         debugShowCheckedModeBanner: false,
         theme: ThemeApp.light,
+        // home: TestScreen(),
         home: user == null ? const AuthScreen() : const HomeScreen(),
       ),
     );

@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             MaterialPageRoute(
                                 builder: (context) => const MapScreen()));
                       },
-                      text: "Interactive Map",
+                      text: "Campus Map",
                       image: AssetsVariable.map),
                 ),
                 Expanded(
@@ -79,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 builder: (context) => const AdvisorScreen()));
 
                       },
-                      text: "Academic Advisor",
+                      text: "Academic Advisor Communication Session",
                       image: AssetsVariable.support),
                 ),
                 Expanded(
@@ -123,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           image)),
                   Expanded(
                     child:
-                        Text(text, style: Theme.of(context).textTheme.button),
+                        Center(child: Text(text, style: Theme.of(context).textTheme.button,textAlign: TextAlign.center,)),
                   ),
                 ],
               ),

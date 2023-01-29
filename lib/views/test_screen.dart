@@ -210,8 +210,8 @@ class _TestScreenState extends State<TestScreen> {
       },
       {
         "answer":
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-        "type": "clickable",
+            "https://his.tu.edu.sa/",
+        "type": "interactive:25",
         "group": 2,
         "id": 7,
         "order": 7,
@@ -255,7 +255,7 @@ class _TestScreenState extends State<TestScreen> {
         "group": 2,
         "id": 13,
         "order": 13,
-        "question": "8. Extra-Curricular Activities"
+        "question": "7. Extra-Curricular Activities"
       },
       {
         "answer": "",
@@ -263,7 +263,7 @@ class _TestScreenState extends State<TestScreen> {
         "group": 2,
         "id": 15,
         "order": 15,
-        "question": "9. University Library"
+        "question": "8. University Library"
       },
       {
         "id": 16,
@@ -346,6 +346,15 @@ class _TestScreenState extends State<TestScreen> {
             "https://www.tu.edu.sa/Attachments/0b2db766-a203-4dde-bbbf-d91bff14aa87_.pdf",
         "type": "url",
         "group": 2,
+      },
+      {
+        "answer":
+        "https://his.tu.edu.sa/",
+        "type": "url",
+        "group": 2,
+        "id": 25,
+        "order": 7,
+        "question": "Click to open medical care."
       },
     ];
     for (var item in questions) {

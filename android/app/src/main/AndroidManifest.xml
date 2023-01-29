@@ -21,8 +21,6 @@
             <category android:name="android.intent.category.BROWSABLE" />
             <data android:scheme="https" />
         </intent>
-
-        <package android:name="com.whatsapp" />
         <package android:name="org.telegram.messenger" />
     </queries>
     <application

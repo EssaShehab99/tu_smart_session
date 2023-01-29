@@ -21,7 +21,7 @@ class AuthScreen extends StatelessWidget {
           Expanded(
               child: Column(
             children: [
-              SharedComponents.appBar("TV Smart Session", withBackBtn: false),
+              SharedComponents.appBar("TU Smart Session", withBackBtn: false),
               Expanded(
                   child: SizedBox(
                 height: 200,
