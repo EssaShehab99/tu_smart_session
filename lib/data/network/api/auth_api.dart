@@ -4,6 +4,7 @@ import 'constants/endpoint.dart';
 
 class AuthApi {
   final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
+
   Future<String?> setUser(Map<String, dynamic> body) async {
     try {
       if((await checkUser(body["student-number"]))?.data()==null) {
@@ -84,6 +85,20 @@ class AuthApi {
       final response=  await _fireStore
           .collection(Endpoints.users)
           .where("id", isEqualTo: int.parse(id))
+          .get();
+      await _fireStore
+          .collection(Endpoints.users).doc(response.docs.firstOrNull?.id).update(body);
+      return true;
+    } catch (e) {
+      rethrow;
+    }
+  }
+  Future<bool> changePassword(int id,String email,Map<String, dynamic> body) async {
+    try {
+      final response=  await _fireStore
+          .collection(Endpoints.users)
+          .where("student-number", isEqualTo: id)
+          .where("email", isEqualTo: email)
           .get();
       await _fireStore
           .collection(Endpoints.users).doc(response.docs.firstOrNull?.id).update(body);

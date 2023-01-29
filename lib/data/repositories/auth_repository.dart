@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:email_otp/email_otp.dart';
 import 'package:flutter/foundation.dart';
 import '/data/network/http_exception.dart';
 import '/data/local/sharedpref_helper/preference_variable.dart';
@@ -15,24 +16,60 @@ import '/data/network/api/auth_api.dart';
 class AuthRepository {
   final AuthApi _authApi;
   final _preferences = Preferences.instance;
+  EmailOTP myauth = EmailOTP();
   AuthRepository(this._authApi);
+
+  Future<bool> sendCode(String email) async {
+    try {
+      myauth.setConfig(
+          appEmail: "essa.shehab.dev@gmail.com",
+          appName: "TU Smart Session",
+          userEmail: email,
+          otpLength: 6,
+          otpType: OTPType.digitsOnly);
+      return await await myauth.sendOTP();
+    } catch (_) {
+      return false;
+    }
+  }
+
+  bool verifyCode(String code) {
+    try {
+      return myauth.verifyOTP(
+        otp: code,
+      );
+    } catch (_) {
+      return false;
+    }
+  }
+
+  Future<bool> changePassword(
+      int studentNumber, String email, String password) async {
+    try {
+      return await _authApi
+          .changePassword(studentNumber, email, {"password": password});
+    } catch (_) {
+      return false;
+    }
+  }
 
   Future<Result> signUp(User user) async {
     try {
       debugPrint(
           "==========AuthRepository->signUp->user:${user.toJson()} ==========");
       final resultUniversity =
-          await _authApi.getUniversityCard(user.studentNumber);
-      final resultGymCard = await _authApi.getGymCard(user.studentNumber);
-      final resultHealthCard = await _authApi.getHealthCard(user.studentNumber);
+          await _authApi.getUniversityCard(user.studentNumber!);
+      final resultGymCard = await _authApi.getGymCard(user.studentNumber!);
+      final resultHealthCard =
+          await _authApi.getHealthCard(user.studentNumber!);
       user.universityCard = UniversityCard.fromJson(resultUniversity.data(),
           reference: resultUniversity.reference);
       user.gymCard = GymCard.fromJson(resultGymCard.data(),
           reference: resultGymCard.reference);
       user.healthCard = HealthCard.fromJson(resultHealthCard.data(),
           reference: resultHealthCard.reference);
-      String? id=await _authApi.setUser(user.toFirebase());
-      if(id==null){
+      String? id = await _authApi.setUser(user.toFirebase());
+      if (id == null) {
         return Error(ExistUserException());
       }
       await _preferences.delete(PreferenceVariable.user);
@@ -106,26 +143,27 @@ class AuthRepository {
   }
 
   Future<Result> getUserData(int studentNumber, String password) async {
-    try{
+    try {
       return await signIn(studentNumber, password);
-
-    }catch (e){
+    } catch (e) {
       return Error(e);
     }
   }
+
   Future<Result> updateUser(User user) async {
-    try{
-       return Success(await _authApi.updateUser(user.id.toString(),user.toFirebase()));
-
-    }catch (e){
+    try {
+      return Success(
+          await _authApi.updateUser(user.id.toString(), user.toFirebase()));
+    } catch (e) {
       return Error(e);
     }
   }
+
   Future<Result> signOut() async {
-    try{
+    try {
       bool status = await _preferences.delete(PreferenceVariable.user);
       return Success(status);
-    }catch (e){
+    } catch (e) {
       return Error(e);
     }
   }

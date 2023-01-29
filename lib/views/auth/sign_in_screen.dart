@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tu_smart_session/views/auth/forget_password.dart';
 import '/data/network/data_response.dart';
 import '/data/providers/auth_provider.dart';
 import '/views/auth/sign_up_screen.dart';
@@ -83,7 +84,22 @@ class _SignInScreenState extends State<SignInScreen> {
                     textInputAction: TextInputAction.done,
                   ),
                 ),
-                const SizedBox(height: SharedValues.padding * 5),
+                Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: SharedValues.padding),
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ForgetPassword()));
+                      },
+                      child: Text("Forget password?",
+                          style: Theme.of(context).textTheme.button),
+                    ),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(SharedValues.padding),
                   child: ButtonWidget(

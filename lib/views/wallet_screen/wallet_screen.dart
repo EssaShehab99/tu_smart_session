@@ -36,7 +36,10 @@ class _WalletScreenState extends State<WalletScreen> {
               _buildCard("University Card", [
                 "Name: ${_user?.universityCard?.name}",
                 "ID: ${_user?.universityCard?.id}",
-                "Department: ${_user?.universityCard?.department}"
+                "Department: ${_user?.universityCard?.department}",
+                "Email: ${_user?.universityCard?.email}",
+                "College: ${_user?.universityCard?.college}",
+                "Academic Degree: ${_user?.universityCard?.academicDegree}",
               ]),
               _buildCard("Gym Membership Card", [
                 "Name: ${_user?.gymCard?.name}",

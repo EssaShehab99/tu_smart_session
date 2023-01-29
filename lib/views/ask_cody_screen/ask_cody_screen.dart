@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tu_smart_session/data/utils/utils.dart';
 import '/data/network/data_response.dart';
 import '/data/utils/extension.dart';
 import '/views/shared/button_widget.dart';
@@ -289,7 +290,7 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
                   }
                   else if (question.type?.contains("url") == true &&
                       question.answer != null) {
-                    await provider.launchUri(question.answer!);
+                    await Utils.launchUri(question.answer!);
                   }
                 },
                 child: Container(

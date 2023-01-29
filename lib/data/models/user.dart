@@ -6,21 +6,21 @@ import 'health_card.dart';
 import 'university_card.dart';
 
 class User {
-  int id;
+  int? id;
   int studentNumber;
   String email;
-  String phone;
-  String password;
+  String? phone;
+  String? password;
   UniversityCard? universityCard;
   HealthCard? healthCard;
   GymCard? gymCard;
   List<StudentSubject>? studentSubjects;
   User(
-      {required this.id,
-      required this.studentNumber,
+      {this.id,
+        required this.studentNumber,
       required this.email,
-      required this.phone,
-      required this.password,
+      this.phone,
+      this.password,
       this.universityCard,
       this.healthCard,
       this.studentSubjects,

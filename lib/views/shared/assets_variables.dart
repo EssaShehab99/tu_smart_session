@@ -15,4 +15,7 @@ class AssetsVariable {
   //icons:
   static const String info="assets/icons/info.svg";
   static const String user="assets/icons/user.svg";
+  static const String facebook="assets/icons/facebook.svg";
+  static const String twitter="assets/icons/twitter.svg";
+  static const String youtube="assets/icons/youtube.svg";
 }

@@ -156,14 +156,4 @@ class AskCodyProvider extends ChangeNotifier {
     }
    return result;
   }
-
-  Future<void> launchUri(String url) async {
-    try {
-      debugPrint("================AskCodyProvider->launchUri: $url ================");
-      final uri= Uri.parse(url);
-      if (await canLaunchUrl(uri)) {
-        await launchUrl(uri, mode: LaunchMode.externalApplication);
-      }
-    } catch (_) {}
-  }
 }

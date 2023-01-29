@@ -137,7 +137,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textInputAction: TextInputAction.none,
                     obscureText: true,
                     validator: (value) {
-                      if (confirmPassword.text == password.text) {
+                      if(value == null||value.isEmpty){
+                        return "هذا الحقل مطلوب";
+                      }
+                      else if (confirmPassword.text == password.text) {
                         return null;
                       }
                       return "كلمة المرور غير متطابقة";

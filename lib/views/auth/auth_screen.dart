@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tu_smart_session/views/info_screen/info_screen.dart';
 import 'package:tu_smart_session/views/map_screen/map_screen.dart';
 import '/views/auth/sign_in_screen.dart';
 import '/views/auth/sign_up_screen.dart';
@@ -90,7 +91,14 @@ class AuthScreen extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: () {}, child: SvgPicture.asset(AssetsVariable.info)),
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const InfoScreen(),
+                ));
+          },
+          child: SvgPicture.asset(AssetsVariable.info)),
     ));
   }
 }
