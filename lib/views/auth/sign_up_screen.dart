@@ -87,7 +87,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         if (value != null && value.isNotEmpty) {
                           return null;
                         }
-                        return "هذا الحقل مطلوب";
+                        return "This field is required";
                       }),
                 ),
                 Padding(
@@ -99,7 +99,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         if (value != null && value.isNotEmpty) {
                           return null;
                         }
-                        return "هذا الحقل مطلوب";
+                        return "This field is required";
                       }),
                 ),
                 Padding(
@@ -111,7 +111,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         if (value != null && value.isNotEmpty) {
                           return null;
                         }
-                        return "هذا الحقل مطلوب";
+                        return "This field is required";
                       }),
                 ),
                 Padding(
@@ -125,7 +125,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       if (value != null && value.isNotEmpty) {
                         return null;
                       }
-                      return "هذا الحقل مطلوب";
+                      return "This field is required";
                     },
                   ),
                 ),
@@ -138,7 +138,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     obscureText: true,
                     validator: (value) {
                       if(value == null||value.isEmpty){
-                        return "هذا الحقل مطلوب";
+                        return "This field is required";
                       }
                       else if (confirmPassword.text == password.text) {
                         return null;

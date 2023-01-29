@@ -22,11 +22,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     //TODO: Uncomment
-    // WidgetsBinding.instance.addPostFrameCallback((_) async {
-    //   SharedComponents.showOverlayLoading(context, ()async{
-    //     await Provider.of<AuthProvider>(context,listen: false).getUserData();
-    //   });
-    // });
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      SharedComponents.showOverlayLoading(context, ()async{
+        await Provider.of<AuthProvider>(context,listen: false).getUserData();
+      });
+    });
     super.initState();
   }
   @override

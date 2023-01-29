@@ -69,16 +69,16 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                             if (value != null && value.isNotEmpty) {
                               return null;
                             }
-                            return "هذا الحقل مطلوب";
+                            return "This field is required";
                           },
                           hintText: "Id Number"),
                       const SizedBox(height: SharedValues.padding),
                       TextFieldWidget(
                           validator: (value) {
                             if (value == null) {
-                              return "هذا الحقل مطلوب";
+                              return "This field is required";
                             } else if (!Utils.validateEmail(value)) {
-                              return "ايميل غير صالح";
+                              return "Invalid email";
                             }
                             return null;
                           },
@@ -92,7 +92,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                           if (value != null && value.isNotEmpty) {
                             return null;
                           }
-                          return "هذا الحقل مطلوب";
+                          return "This field is required";
                         },
                       ),
                       const SizedBox(height: SharedValues.padding),
@@ -103,7 +103,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         obscureText: true,
                         validator: (value) {
                           if(value == null||value.isEmpty){
-                            return "هذا الحقل مطلوب";
+                            return "This field is required";
                           }
                           else if (confirmPasswordController.text ==
                               passwordController.text) {

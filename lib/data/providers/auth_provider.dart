@@ -57,4 +57,5 @@ class AuthProvider extends ChangeNotifier {
     return await _authRepository.changePassword(
         _user!.studentNumber,_user!.email, _user!.password!);
   }
+
 }

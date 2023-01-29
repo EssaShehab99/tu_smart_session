@@ -65,7 +65,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         if (value != null && value.isNotEmpty) {
                           return null;
                         }
-                        return "هذا الحقل مطلوب";
+                        return "This field is required";
                       },
                       textInputAction: TextInputAction.next,
                       hintText: "Id Number"),
@@ -78,7 +78,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       if (value != null && value.isNotEmpty) {
                         return null;
                       }
-                      return "هذا الحقل مطلوب";
+                      return "This field is required";
                     },
                     hintText: "Password",
                     textInputAction: TextInputAction.done,
