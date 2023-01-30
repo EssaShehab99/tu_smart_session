@@ -24,9 +24,9 @@
         <package android:name="org.telegram.messenger" />
     </queries>
     <application
-        android:label="tu_smart_session"
+        android:label="TU SMART"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD6LhM8_M9x6dfba7VTB-5K1ufbckNlkjI" />
