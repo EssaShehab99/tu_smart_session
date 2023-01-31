@@ -14,7 +14,7 @@ class InfoScreen extends StatelessWidget {
         child: Scaffold(
             body: Column(
       children: [
-        SharedComponents.appBar("About us"),
+        SharedComponents.appBar("About TU"),
         Expanded(
             child: Padding(
           padding: const EdgeInsets.all(SharedValues.padding),
