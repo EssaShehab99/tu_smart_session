@@ -82,7 +82,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   padding: const EdgeInsets.all(SharedValues.padding),
                   child: TextFieldWidget(
                       controller: studentNumber,
-                      hintText: "Id Number",
+                      hintText: "Student Number",
                       validator: (value) {
                         if (value != null && value.isNotEmpty) {
                           return null;

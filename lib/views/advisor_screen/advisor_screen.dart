@@ -39,7 +39,7 @@ class _AdvisorScreenState extends State<AdvisorScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SharedComponents.appBar("Academic Advisor Session"),
+          SharedComponents.appBar("Academic Advisor Communication Session (AACS)"),
           Expanded(
               child: Form(
             key: _formKey,

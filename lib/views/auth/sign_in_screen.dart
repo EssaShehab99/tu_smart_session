@@ -68,7 +68,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         return "This field is required";
                       },
                       textInputAction: TextInputAction.next,
-                      hintText: "Id Number"),
+                      hintText: "Student Number"),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(SharedValues.padding),

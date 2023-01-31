@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Scaffold(
       body: Column(
         children: [
-          SharedComponents.appBar("TU Smart Session",withUserOptions: true,),
+          SharedComponents.appBar("TU Smart Services",withUserOptions: true,),
           const SizedBox(height: SharedValues.padding*3),
           Expanded(
             flex: 3,

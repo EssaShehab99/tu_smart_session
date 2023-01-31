@@ -177,13 +177,12 @@ class _TestScreenState extends State<TestScreen> {
         "order": 3,
         "question": "1. Adding/withdrawing courses",
         "id": 3,
-    "answer": "Add section",
-    "type": "interactive:10,11,12",
-    "group": 2,
+        "answer": "Add section",
+        "type": "interactive:10,12",
+        "group": 2,
       },
       {
-        "answer":
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+        "answer": "The card has been issued in the digital wallet",
         "type": "clickable",
         "group": 2,
         "id": 4,
@@ -192,7 +191,7 @@ class _TestScreenState extends State<TestScreen> {
       },
       {
         "answer":
-            "Medical care:\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            "Armed Forces Hospital, King Fahad Air Base, King Abdulaziz Hospital, King Faisal Hospital, Children's Hospital",
         "type": "clickable",
         "group": 2,
         "id": 5,
@@ -201,7 +200,7 @@ class _TestScreenState extends State<TestScreen> {
       },
       {
         "answer":
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            "Dr. Wael Yousef Alghamdi:\nEmail: w.alghamdi@tu.edu.sa\nOffice hours: Tuesday : 11:00 - 12:00 , Thursday : 10:00 - 11:00\nOffice number: 12207\n\nDr. Rajwa abduallh Alharthi:\nEmail: raharthi@tu.edu.sa\nOffice hours: Wednesday : 11:00 - 12:00 , Friday : 10:00 - 11:00\nOffice number: 7111\n\nDr. Abdulmajeed Alsufyani:\nEmail: a.s.alsufyani@tu.edu.sa\nOffice hours: Friday : 8:00 - 9:00 , Thursday : 1:00 - 2:00\nOffice number: 12207",
         "type": "clickable",
         "group": 2,
         "id": 6,
@@ -209,8 +208,7 @@ class _TestScreenState extends State<TestScreen> {
         "question": "4. Communicating with academic staff"
       },
       {
-        "answer":
-            "https://his.tu.edu.sa/",
+        "answer": "https://his.tu.edu.sa/",
         "type": "interactive:25",
         "group": 2,
         "id": 7,
@@ -219,7 +217,7 @@ class _TestScreenState extends State<TestScreen> {
       },
       {
         "answer":
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            "The documents can be issued from the edugate",
         "type": "clickable",
         "group": 2,
         "id": 8,
@@ -232,13 +230,6 @@ class _TestScreenState extends State<TestScreen> {
         "question": "Add subject",
         "answer": "",
         "type": "dependent:Please enter subject ID,Please enter section ID",
-        "group": 2,
-      },
-      {
-        "id": 11,
-        "order": 11,
-        "question": "Edit subject",
-        "type": "dependent:Please enter subject ID",
         "group": 2,
       },
       {
@@ -348,8 +339,7 @@ class _TestScreenState extends State<TestScreen> {
         "group": 2,
       },
       {
-        "answer":
-        "https://his.tu.edu.sa/",
+        "answer": "https://his.tu.edu.sa/",
         "type": "url",
         "group": 2,
         "id": 25,

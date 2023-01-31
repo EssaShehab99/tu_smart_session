@@ -37,7 +37,6 @@ class _AskCodyScreenState extends State<AskCodyScreen> {
 
   @override
   void dispose() {
-    focusNode?.dispose();
     _messageController.dispose();
     super.dispose();
   }

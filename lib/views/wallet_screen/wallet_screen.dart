@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tu_smart_session/data/utils/utils.dart';
 import '/data/models/user.dart';
 import '/data/providers/auth_provider.dart';
 import '/views/shared/assets_variables.dart';
@@ -44,13 +45,13 @@ class _WalletScreenState extends State<WalletScreen> {
               _buildCard("Gym Membership Card", [
                 "Name: ${_user?.gymCard?.name}",
                 "ID: ${_user?.gymCard?.id}",
-                "Joining: ${DateFormat("yyyy-MM-dd").format(_user?.gymCard?.expire??DateTime.now())}",
-                "Expire: ${DateFormat("yyyy-MM-dd").format(_user?.gymCard?.expire??DateTime.now())}",
+                "Joining: ${Utils.replaceArabicNumber(DateFormat("yyyy-MM-dd").format(_user?.gymCard?.expire??DateTime.now()))}",
+                "Expire: ${Utils.replaceArabicNumber(DateFormat("yyyy-MM-dd").format(_user?.gymCard?.expire??DateTime.now()))}",
               ]),
               _buildCard("Health Status Card", [
                 "Name: ${_user?.healthCard?.name}",
                 "ID: ${_user?.healthCard?.id}",
-                "Date of Birth: ${DateFormat("yyyy-MM-dd").format(_user?.healthCard?.dateOfBirth??DateTime.now())}",
+                "Date of Birth: ${Utils.replaceArabicNumber(DateFormat("yyyy-MM-dd").format(_user?.healthCard?.dateOfBirth??DateTime.now()))}",
                 "Blood Type: ${_user?.healthCard?.bloodType}",
                 "Chronic Disease: ${_user?.healthCard?.chronicDisease}",
                 "Medication: ${_user?.healthCard?.medication}",
