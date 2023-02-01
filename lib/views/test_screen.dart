@@ -157,199 +157,199 @@ class _TestScreenState extends State<TestScreen> {
     //   await _fireStore.collection("university-card").add(item);
     // }
     //
-    final questions = [
-      {
-        "type": "none",
-        "group": 1,
-        "order": 1,
-        "id": 1,
-        "question": "Hi name, I'm Cody",
-      },
-      {
-        "type": "none",
-        "group": 1,
-        "id": 2,
-        "order": 2,
-        "question":
-            "I will help you, choose the question you want and I will answer you."
-      },
-      {
-        "order": 3,
-        "question": "1. Adding/withdrawing courses",
-        "id": 3,
-        "answer": "Add section",
-        "type": "interactive:10,12",
-        "group": 2,
-      },
-      {
-        "answer": "The card has been issued in the digital wallet",
-        "type": "clickable",
-        "group": 2,
-        "id": 4,
-        "order": 4,
-        "question": "2. Issuing a university card"
-      },
-      {
-        "answer":
-            "Armed Forces Hospital, King Fahad Air Base, King Abdulaziz Hospital, King Faisal Hospital, Children's Hospital",
-        "type": "clickable",
-        "group": 2,
-        "id": 5,
-        "order": 5,
-        "question": "3. Approving cooperative training intuitions"
-      },
-      {
-        "answer":
-            "Dr. Wael Yousef Alghamdi:\nEmail: w.alghamdi@tu.edu.sa\nOffice hours: Tuesday : 11:00 - 12:00 , Thursday : 10:00 - 11:00\nOffice number: 12207\n\nDr. Rajwa abduallh Alharthi:\nEmail: raharthi@tu.edu.sa\nOffice hours: Wednesday : 11:00 - 12:00 , Friday : 10:00 - 11:00\nOffice number: 7111\n\nDr. Abdulmajeed Alsufyani:\nEmail: a.s.alsufyani@tu.edu.sa\nOffice hours: Friday : 8:00 - 9:00 , Thursday : 1:00 - 2:00\nOffice number: 12207",
-        "type": "clickable",
-        "group": 2,
-        "id": 6,
-        "order": 6,
-        "question": "4. Communicating with academic staff"
-      },
-      {
-        "answer": "https://his.tu.edu.sa/",
-        "type": "interactive:25",
-        "group": 2,
-        "id": 7,
-        "order": 7,
-        "question": "5. Medical care"
-      },
-      {
-        "answer":
-            "The documents can be issued from the edugate",
-        "type": "clickable",
-        "group": 2,
-        "id": 8,
-        "order": 8,
-        "question": "6. Notarization and Issuance of Official Documents"
-      },
-      {
-        "id": 10,
-        "order": 10,
-        "question": "Add subject",
-        "answer": "",
-        "type": "dependent:Please enter subject ID,Please enter section ID",
-        "group": 2,
-      },
-      {
-        "id": 12,
-        "order": 12,
-        "question": "Delete subject",
-        "type": "dependent:Please enter subject ID",
-        "group": 2,
-      },
-      {
-        "answer":
-            "Arabic Language Day 3-1-2022 the place Activities building,Programing Day 7-1-2022 the place Computer and IT building, sport workshop 11-1-2022 the place Activities building",
-        "type": "clickable",
-        "group": 2,
-        "id": 13,
-        "order": 13,
-        "question": "7. Extra-Curricular Activities"
-      },
-      {
-        "answer": "",
-        "type": "interactive:16,17,18,19,20,21,22,23,24",
-        "group": 2,
-        "id": 15,
-        "order": 15,
-        "question": "8. University Library"
-      },
-      {
-        "id": 16,
-        "order": 16,
-        "question": "Digital library training course request form",
-        "answer":
-            "https://www.tu.edu.sa/Attachments/7615aec0-d470-400f-801e-a374e8a59cce_.pdf",
-        "type": "url",
-        "group": 2,
-      },
-      {
-        "id": 17,
-        "order": 17,
-        "question": "Audio book equipment borrowing form",
-        "answer":
-            "https://www.tu.edu.sa/Attachments/125d134d-9418-45ae-acd1-affe8e6ac2cb_.pdf",
-        "type": "url",
-        "group": 2,
-      },
-      {
-        "id": 18,
-        "order": 18,
-        "question": "Book proposal template",
-        "answer":
-            "https://www.tu.edu.sa/Attachments/42417ee0-39eb-4ccd-bc67-49a03e674762_.pdf",
-        "type": "url",
-        "group": 2,
-      },
-      {
-        "id": 19,
-        "order": 19,
-        "question": "Induction program evaluation form",
-        "answer":
-            "https://www.tu.edu.sa/Attachments/420e14ce-3c1a-4705-921e-a949ceb344b4_.pdf",
-        "type": "url",
-        "group": 2,
-      },
-      {
-        "id": 20,
-        "order": 20,
-        "question": "Course evaluation form",
-        "answer":
-            "https://www.tu.edu.sa/Attachments/69cba306-ee44-4197-89cd-74b9f46d4d28_.pdf",
-        "type": "url",
-        "group": 2,
-      },
-      {
-        "id": 21,
-        "order": 21,
-        "question": "Form of booking a hall or study vacancy",
-        "answer":
-            "https://www.tu.edu.sa/Attachments/45c3c02e-b3d2-4006-8076-81c344af03fc_.pdf",
-        "type": "url",
-        "group": 2,
-      },
-      {
-        "id": 22,
-        "order": 22,
-        "question":
-            "Hall reservation form in the central library in the male students' section",
-        "answer":
-            "https://www.tu.edu.sa/Attachments/971642f2-e4db-4041-a3a2-6b8d1a723ed1_.pdf",
-        "type": "url",
-        "group": 2,
-      },
-      {
-        "id": 23,
-        "order": 23,
-        "question": "Central Library visit form",
-        "answer":
-            "https://www.tu.edu.sa/Attachments/9f600428-e780-48b6-8402-97f747e6cc4f_.pdf",
-        "type": "url",
-        "group": 2,
-      },
-      {
-        "id": 24,
-        "order": 24,
-        "question": "Training course request form",
-        "answer":
-            "https://www.tu.edu.sa/Attachments/0b2db766-a203-4dde-bbbf-d91bff14aa87_.pdf",
-        "type": "url",
-        "group": 2,
-      },
-      {
-        "answer": "https://his.tu.edu.sa/",
-        "type": "url",
-        "group": 2,
-        "id": 25,
-        "order": 7,
-        "question": "Click to open medical care."
-      },
-    ];
-    for (var item in questions) {
-      await _fireStore.collection("questions").add(item);
-    }
+    // final questions = [
+    //   {
+    //     "type": "none",
+    //     "group": 1,
+    //     "order": 1,
+    //     "id": 1,
+    //     "question": "Hi name, I'm Cody",
+    //   },
+    //   {
+    //     "type": "none",
+    //     "group": 1,
+    //     "id": 2,
+    //     "order": 2,
+    //     "question":
+    //         "I will help you, choose the question you want and I will answer you."
+    //   },
+    //   {
+    //     "order": 3,
+    //     "question": "1. Adding/withdrawing courses",
+    //     "id": 3,
+    //     "answer": "Add section",
+    //     "type": "interactive:10,12",
+    //     "group": 2,
+    //   },
+    //   {
+    //     "answer": "The card has been issued in the digital wallet",
+    //     "type": "clickable",
+    //     "group": 2,
+    //     "id": 4,
+    //     "order": 4,
+    //     "question": "2. Issuing a university card"
+    //   },
+    //   {
+    //     "answer":
+    //         "Armed Forces Hospital, King Fahad Air Base, King Abdulaziz Hospital, King Faisal Hospital, Children's Hospital",
+    //     "type": "clickable",
+    //     "group": 2,
+    //     "id": 5,
+    //     "order": 5,
+    //     "question": "3. Approving cooperative training intuitions"
+    //   },
+    //   {
+    //     "answer":
+    //         "Dr. Wael Yousef Alghamdi:\nEmail: w.alghamdi@tu.edu.sa\nOffice hours: Tuesday : 11:00 - 12:00 , Thursday : 10:00 - 11:00\nOffice number: 12207\n\nDr. Rajwa abduallh Alharthi:\nEmail: raharthi@tu.edu.sa\nOffice hours: Wednesday : 11:00 - 12:00 , Friday : 10:00 - 11:00\nOffice number: 7111\n\nDr. Abdulmajeed Alsufyani:\nEmail: a.s.alsufyani@tu.edu.sa\nOffice hours: Friday : 8:00 - 9:00 , Thursday : 1:00 - 2:00\nOffice number: 12207",
+    //     "type": "clickable",
+    //     "group": 2,
+    //     "id": 6,
+    //     "order": 6,
+    //     "question": "4. Communicating with academic staff"
+    //   },
+    //   {
+    //     "answer": "https://his.tu.edu.sa/",
+    //     "type": "interactive:25",
+    //     "group": 2,
+    //     "id": 7,
+    //     "order": 7,
+    //     "question": "5. Medical care"
+    //   },
+    //   {
+    //     "answer":
+    //         "The documents can be issued from the edugate",
+    //     "type": "clickable",
+    //     "group": 2,
+    //     "id": 8,
+    //     "order": 8,
+    //     "question": "6. Notarization and Issuance of Official Documents"
+    //   },
+    //   {
+    //     "id": 10,
+    //     "order": 10,
+    //     "question": "Add subject",
+    //     "answer": "",
+    //     "type": "dependent:Please enter subject ID,Please enter section ID",
+    //     "group": 2,
+    //   },
+    //   {
+    //     "id": 12,
+    //     "order": 12,
+    //     "question": "Delete subject",
+    //     "type": "dependent:Please enter subject ID",
+    //     "group": 2,
+    //   },
+    //   {
+    //     "answer":
+    //         "Arabic Language Day 3-1-2022 the place Activities building,Programing Day 7-1-2022 the place Computer and IT building, sport workshop 11-1-2022 the place Activities building",
+    //     "type": "clickable",
+    //     "group": 2,
+    //     "id": 13,
+    //     "order": 13,
+    //     "question": "7. Extra-Curricular Activities"
+    //   },
+    //   {
+    //     "answer": "",
+    //     "type": "interactive:16,17,18,19,20,21,22,23,24",
+    //     "group": 2,
+    //     "id": 15,
+    //     "order": 15,
+    //     "question": "8. University Library"
+    //   },
+    //   {
+    //     "id": 16,
+    //     "order": 16,
+    //     "question": "Digital library training course request form",
+    //     "answer":
+    //         "https://www.tu.edu.sa/Attachments/7615aec0-d470-400f-801e-a374e8a59cce_.pdf",
+    //     "type": "url",
+    //     "group": 2,
+    //   },
+    //   {
+    //     "id": 17,
+    //     "order": 17,
+    //     "question": "Audio book equipment borrowing form",
+    //     "answer":
+    //         "https://www.tu.edu.sa/Attachments/125d134d-9418-45ae-acd1-affe8e6ac2cb_.pdf",
+    //     "type": "url",
+    //     "group": 2,
+    //   },
+    //   {
+    //     "id": 18,
+    //     "order": 18,
+    //     "question": "Book proposal template",
+    //     "answer":
+    //         "https://www.tu.edu.sa/Attachments/42417ee0-39eb-4ccd-bc67-49a03e674762_.pdf",
+    //     "type": "url",
+    //     "group": 2,
+    //   },
+    //   {
+    //     "id": 19,
+    //     "order": 19,
+    //     "question": "Induction program evaluation form",
+    //     "answer":
+    //         "https://www.tu.edu.sa/Attachments/420e14ce-3c1a-4705-921e-a949ceb344b4_.pdf",
+    //     "type": "url",
+    //     "group": 2,
+    //   },
+    //   {
+    //     "id": 20,
+    //     "order": 20,
+    //     "question": "Course evaluation form",
+    //     "answer":
+    //         "https://www.tu.edu.sa/Attachments/69cba306-ee44-4197-89cd-74b9f46d4d28_.pdf",
+    //     "type": "url",
+    //     "group": 2,
+    //   },
+    //   {
+    //     "id": 21,
+    //     "order": 21,
+    //     "question": "Form of booking a hall or study vacancy",
+    //     "answer":
+    //         "https://www.tu.edu.sa/Attachments/45c3c02e-b3d2-4006-8076-81c344af03fc_.pdf",
+    //     "type": "url",
+    //     "group": 2,
+    //   },
+    //   {
+    //     "id": 22,
+    //     "order": 22,
+    //     "question":
+    //         "Hall reservation form in the central library in the male students' section",
+    //     "answer":
+    //         "https://www.tu.edu.sa/Attachments/971642f2-e4db-4041-a3a2-6b8d1a723ed1_.pdf",
+    //     "type": "url",
+    //     "group": 2,
+    //   },
+    //   {
+    //     "id": 23,
+    //     "order": 23,
+    //     "question": "Central Library visit form",
+    //     "answer":
+    //         "https://www.tu.edu.sa/Attachments/9f600428-e780-48b6-8402-97f747e6cc4f_.pdf",
+    //     "type": "url",
+    //     "group": 2,
+    //   },
+    //   {
+    //     "id": 24,
+    //     "order": 24,
+    //     "question": "Training course request form",
+    //     "answer":
+    //         "https://www.tu.edu.sa/Attachments/0b2db766-a203-4dde-bbbf-d91bff14aa87_.pdf",
+    //     "type": "url",
+    //     "group": 2,
+    //   },
+    //   {
+    //     "answer": "https://his.tu.edu.sa/",
+    //     "type": "url",
+    //     "group": 2,
+    //     "id": 25,
+    //     "order": 7,
+    //     "question": "Click to open medical care."
+    //   },
+    // ];
+    // for (var item in questions) {
+    //   await _fireStore.collection("questions").add(item);
+    // }
     //
     // final advisors = [
     //   {
@@ -1148,236 +1148,243 @@ class _TestScreenState extends State<TestScreen> {
     // }
     //
 
-    // final places = [
-    //
-    //   {
-    //     "id": 1,
-    //     "name": "Educational TV",
-    //     "latitude": 21.432454700960655,
-    //     "longitude": 40.475104751087876,
-    //     "type": "building",
-    //   },
-    //   {
-    //     "id": 2,
-    //     "name": "Departments of the Faculty of Science + Classrooms",
-    //     "latitude": 21.432233765088235,
-    //     "longitude": 40.47550862940269,
-    //     "type": "building",
-    //   },
-    //   {
-    //     "id": 3,
-    //     "name": "Labs of the Faculty of Science",
-    //     "latitude": 21.43143186881286,
-    //     "longitude": 40.47544604894003,
-    //     "type": "building",
-    //   },
-    //   {
-    //     "id": 4,
-    //     "name": "Classrooms",
-    //     "latitude": 21.4306478474109,
-    //     "longitude": 40.47566289018876,
-    //     "type": "building",
-    //   },
-    //   {
-    //     "id": 5,
-    //     "name": "Classrooms + College of Computing + University Theater",
-    //     "latitude": 21.43251669056089,
-    //     "longitude": 40.47622437452368,
-    //     "type": "building",
-    //   },
-    //   {
-    //     "id": 6,
-    //     "name": "The Central Library",
-    //     "latitude": 21.432069325137434,
-    //     "longitude": 40.4761486514028,
-    //     "type": "building",
-    //   },
-    //   {
-    //     "id": 7,
-    //     "name": "Labs of The Faculty of Science + Physics Department",
-    //     "latitude": 21.431118196500186,
-    //     "longitude": 40.47645465948295,
-    //     "type": "building",
-    //   },
-    //   {
-    //     "id": 8,
-    //     "name": "Faculty Offices + Deanship and Support Departments",
-    //     "latitude": 21.43050387473318,
-    //     "longitude": 40.476312487992104,
-    //     "type": "building",
-    //   },
-    //   {
-    //     "id": 9,
-    //     "name": "Classroom + College of Business Administration",
-    //     "latitude": 21.43236171651297,
-    //     "longitude": 40.47711091650329,
-    //     "type": "building",
-    //   },
-    //   {
-    //     "id": 10,
-    //     "name": "College of Computing and Information Technology + Computer",
-    //     "latitude": 21.43151710508181,
-    //     "longitude": 40.47731070061119,
-    //     "type": "building",
-    //   },
-    //   {
-    //     "id": 11,
-    //     "name": "College of Design and Home Economics",
-    //     "latitude": 21.43058757608067,
-    //     "longitude": 40.47726987914182,
-    //     "type": "building",
-    //   },
-    //   {
-    //     "id": 12,
-    //     "name": "Deanship of University Studies",
-    //     "latitude": 21.43221517374071,
-    //     "longitude": 40.47794498035823,
-    //     "type": "building",
-    //   },
-    //   {
-    //     "id": 13,
-    //     "name": "College of Business Administration + Admission and Registration",
-    //     "latitude": 21.43236171651297,
-    //     "longitude": 40.47711091650329,
-    //     "type": "building",
-    //   },
-    //   {
-    //     "id": 14,
-    //     "name": "Faculty of Dentistry + Classrooms.",
-    //     "latitude": 21.43041483903849,
-    //     "longitude": 40.477792442795376,
-    //     "type": "building",
-    //   },
-    //   {
-    //     "id": 15,
-    //     "name": "Student Activities",
-    //     "latitude": 21.429975025975075,
-    //     "longitude": 40.47714882571869,
-    //     "type": "building",
-    //   },
-    //   {
-    //     "id": 16,
-    //     "name": "The Pharmacy + Medical College Laboratory",
-    //     "latitude": 21.42951045939289,
-    //     "longitude": 40.47620422169244,
-    //     "type": "building",
-    //   },
-    //   {
-    //     "id": 17,
-    //     "name": "Faculty of Medicine",
-    //     "latitude": 21.42859262400018,
-    //     "longitude": 40.47687701942194,
-    //     "type": "building",
-    //   },
-    //   {
-    //     "id": 18,
-    //     "name": "English Language Center + Classrooms.",
-    //     "latitude": 21.428646614476083,
-    //     "longitude": 40.477124485254144,
-    //     "type": "building",
-    //   },
-    //   {
-    //     "id": 19,
-    //     "name": "Faculty of Education",
-    //     "latitude": 21.427576311877974,
-    //     "longitude": 40.47689023410958,
-    //     "type": "building",
-    //   },
-    //   {
-    //     "id": 20,
-    //     "name": "College of Literature",
-    //     "latitude": 21.427763193702773,
-    //     "longitude": 40.47611945948756,
-    //     "type": "building",
-    //   },
-    //   {
-    //     "id": 21,
-    //     "type": "building",
-    //     "name": "College of Sharia and Regulations",
-    //     "latitude": 21.426871712567216,
-    //     "longitude": 40.47677907867744,
-    //   },
-    //   {
-    //     "id": 22,
-    //     "type": "service",
-    //     "name": "West Entrance",
-    //     "latitude": 21.43193875402741,
-    //     "longitude": 40.47479938218706
-    //   },
-    //   {
-    //     "id": 23,
-    //     "type": "service",
-    //     "name": "Medical Administration",
-    //     "latitude": 21.431466209986286,
-    //     "longitude": 40.475106641513406
-    //   },
-    //   {
-    //     "id": 24,
-    //     "type": "service",
-    //     "name": "University Restaurant",
-    //     "latitude": 21.432873865612425,
-    //     "longitude": 40.47787110884552
-    //   },
-    //   {
-    //     "id": 25,
-    //     "type": "service",
-    //     "name": "Eastern Entrance + Commercial Mall + Library",
-    //     "latitude": 21.431325983061186,
-    //     "longitude": 40.47874117245038
-    //   },
-    //   {
-    //     "id": 26,
-    //     "type": "service",
-    //     "name": "Student Activities",
-    //     "latitude": 21.429975025975075,
-    //     "longitude": 40.47714882571869
-    //   },
-    //   {
-    //     "id": 27,
-    //     "type": "service",
-    //     "name": "Fresh shop juices",
-    //     "latitude": 21.431789785671,
-    //     "longitude": 40.476620149482216
-    //   },
-    //   {
-    //     "id": 28,
-    //     "type": "service",
-    //     "name": "KARAZ ALBUN",
-    //     "latitude": 21.430407081138885,
-    //     "longitude": 40.476540733141725
-    //   },
-    //   {
-    //     "id": 29,
-    //     "type": "service",
-    //     "name": "Assafi",
-    //     "latitude": 21.42822056414941,
-    //     "longitude": 40.47574967456396
-    //   },
-    //   {
-    //     "id": 30,
-    //     "type": "service",
-    //     "name": "Noni market",
-    //     "latitude": 21.43191442965206,
-    //     "longitude": 40.47597847958356
-    //   },
-    //   {
-    //     "id": 31,
-    //     "type": "service",
-    //     "name": "Khafayef",
-    //     "latitude": 21.43171985135231,
-    //     "longitude": 40.47682912660374
-    //   },
-    //   {
-    //     "id": 32,
-    //     "type": "service",
-    //     "name": "Gate27",
-    //     "latitude": 21.42709880505363,
-    //     "longitude": 40.47615413924407
-    //   },
-    // ];
-    // for (var item in places) {
-    //   await _fireStore.collection("places").add(item);
-    // }
+    final places = [
+
+      {
+        "id": 1,
+        "name": "Educational TV",
+        "latitude": 21.43246491846632,
+        "longitude": 40.47512363970245,
+        "type": "building",
+      },
+      {
+        "id": 4,
+        "name": "Departments of the Faculty of Science + Classrooms",
+        "latitude": 21.432171869221627,
+        "longitude": 40.4755790124362,
+        "type": "building",
+      },
+      {
+        "id": 5,
+        "name": "Labs of the Faculty of Science",
+        "latitude": 21.43144902846343,
+        "longitude": 40.475452746465464,
+        "type": "building",
+      },
+      {
+        "id": 6,
+        "name": "Classrooms",
+        "latitude": 21.430661539338637,
+        "longitude": 40.47568949518254,
+        "type": "building",
+      },
+      {
+        "id": 7,
+        "name": "Classrooms + College of Computing + University Theater",
+        "latitude": 21.43253328826113,
+        "longitude": 40.476396584689695,
+        "type": "building",
+      },
+      {
+        "id": 8,
+        "name": "The Central Library",
+        "latitude": 21.432007320420034,
+        "longitude": 40.476181932529876,
+        "type": "building",
+      },
+      {
+        "id": 9,
+        "name": "Labs of The Faculty of Science + Physics Department",
+        "latitude": 21.43114343616928,
+        "longitude": 40.47647550093359,
+        "type": "building",
+      },
+      {
+        "id": 10,
+        "name": "Faculty Offices + Deanship and Support Departments",
+        "latitude": 21.4305058040399,
+        "longitude": 40.47632713840662,
+        "type": "building",
+      },
+      {
+        "id": 11,
+        "name": "Classroom + College of Business Administration",
+        "latitude": 21.432342294574234,
+        "longitude": 40.47714471066602,
+        "type": "building",
+      },
+      {
+        "id": 12,
+        "name": "College of Computing and Information Technology + Computer",
+        "latitude": 21.43150779613928,
+        "longitude": 40.477293073191554,
+        "type": "building",
+      },
+      {
+        "id": 13,
+        "name": "College of Design and Home Economics",
+        "latitude": 21.430664477728733,
+        "longitude": 40.47729938650003,
+        "type": "building",
+      },
+      {
+        "id": 15,
+        "name": "Deanship of University Studies",
+        "latitude": 21.43225414355511,
+        "longitude": 40.47793387306928,
+        "type": "building",
+      },
+      {
+        "id": 17,
+        "name": "College of Business Administration + Admission and Registration",
+        "latitude": 21.430953917468738,
+        "longitude": 40.47793277308684,
+        "type": "building",
+      },
+      {
+        "id": 18,
+        "name": "Faculty of Dentistry + Classrooms.",
+        "latitude": 21.4304301012335,
+        "longitude": 40.477824422762225,
+        "type": "building",
+      },
+      {
+        "id": 20,
+        "name": "Student Activities",
+        "latitude": 21.4304301012335,
+        "longitude": 40.477824422762225,
+        "type": "building",
+      },
+      {
+        "id": 21,
+        "name": "The Pharmacy + Medical College Laboratory",
+        "latitude": 21.42958989460683,
+        "longitude": 40.47629951400852,
+        "type": "building",
+      },
+      {
+        "id": 23,
+        "name": "Faculty of Medicine",
+        "latitude": 21.428609275934402,
+        "longitude": 40.47625501994805,
+        "type": "building",
+      },
+      {
+        "id": 24,
+        "name": "English Language Center + Classrooms.",
+        "latitude": 21.428683676075917,
+        "longitude": 40.477109454921,
+        "type": "building",
+      },
+      {
+        "id": 25,
+        "name": "Faculty of Education",
+        "latitude": 21.427609610946018,
+        "longitude": 40.47688772413821,
+        "type": "building",
+      },
+      {
+        "id": 26,
+        "name": "College of Literature",
+        "latitude": 21.427549329045423,
+        "longitude": 40.47617981040229,
+        "type": "building",
+      },
+      {
+        "id": 27,
+        "type": "building",
+        "name": "College of Sharia and Regulations",
+        "latitude": 21.426914257565183,
+        "longitude": 40.47680293861324,
+      },
+      {
+        "id": 28,
+        "type": "service",
+        "name": "Gate 2",
+        "latitude": 21.431935371740046,
+        "longitude": 40.47480846835922
+      },
+      {
+        "id": 29,
+        "type": "service",
+        "name": "Building 3 - Medical Administration",
+        "latitude": 21.43135717397358,
+        "longitude": 40.475113967780885
+      },
+      {
+        "id": 30,
+        "type": "service",
+        "name": "University Restaurant",
+        "latitude": 21.432730072241142,
+        "longitude": 40.47788318659043
+      },
+      {
+        "id": 31,
+        "type": "service",
+        "name": "Gate 16 - Eastern Entrance + Commercial Mall + Library C",
+        "latitude": 21.431301689804584,
+        "longitude": 40.47903915836898
+      },
+      {
+        "id": 32,
+        "type": "service",
+        "name": "Starbucks",
+        "latitude": 21.43155528621114,
+        "longitude": 40.477896284895344
+      },
+      {
+        "id": 33,
+        "type": "service",
+        "name": "Building 20 - Student Activities",
+        "latitude": 21.43039086245664,
+        "longitude": 40.47687908653688
+      },
+      {
+        "id": 34,
+        "type": "service",
+        "name": "Fresh shop juices",
+        "latitude": 21.431823999589046,
+        "longitude": 40.4767557049471
+      },
+      {
+        "id": 35,
+        "type": "service",
+        "name": "KARAZ ALBUN",
+        "latitude": 21.430365894786586,
+        "longitude": 40.47685762886592
+      },
+      {
+        "id": 36,
+        "type": "service",
+        "name": "Assafi",
+        "latitude": 21.42823363996988,
+        "longitude": 40.47573646556343
+      },
+      {
+        "id": 37,
+        "type": "service",
+        "name": "Noni market",
+        "latitude": 21.4319442097569,
+        "longitude": 40.475980780659256
+      },
+      {
+        "id": 38,
+        "type": "service",
+        "name": "Khafayef",
+        "latitude": 21.431784124881535,
+        "longitude": 40.476826973913376
+      },
+      {
+        "id": 39,
+        "type": "service",
+        "name": "Gate27",
+        "latitude": 21.427100215058115,
+        "longitude": 40.476212511161705
+      },
+    ];
+    for (var item in places) {
+      await _fireStore.collection("places").add(item);
+    }
   }
 
   Future deleteData() async {
