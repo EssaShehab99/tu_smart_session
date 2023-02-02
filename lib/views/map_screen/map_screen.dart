@@ -146,11 +146,7 @@ class _MapScreenState extends State<MapScreen> {
         .listen((LocationData currentLocation) async {
           if(!mounted)return;
       debugPrint("====================================");
-      if (MapUtils.containsLocationAtLatLng(
-          LatLng(currentLocation.latitude!, currentLocation.longitude!),
-          polygons,
-          true)
-          ) {
+      if (MapUtils.containsLocationAtLatLng(LatLng(currentLocation.latitude!, currentLocation.longitude!),polygons,true)) {
         this.currentLocation =
             LatLng(currentLocation.latitude!, currentLocation.longitude!);
         await getDirections();
@@ -177,6 +173,7 @@ class _MapScreenState extends State<MapScreen> {
         ),
       )
     ];
+    setState(() {});
     await getPermissions();
   }
 
@@ -287,7 +284,8 @@ class _MapScreenState extends State<MapScreen> {
                           if (place?.latLng != null && place?.name != null) {
                             await selectLocation(place!.latLng!, place.name);
                           }
-                        } else if (searchType == SearchType.service) {
+                        }
+                        else if (searchType == SearchType.service) {
                           Place? place = provider.places.firstWhereOrNull(
                                   (element) =>  element.name== selectedService);
                           if (place?.latLng != null && place?.name != null) {

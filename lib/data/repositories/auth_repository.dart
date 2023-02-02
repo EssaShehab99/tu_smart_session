@@ -22,8 +22,8 @@ class AuthRepository {
   Future<bool> sendCode(String email) async {
     try {
       myauth.setConfig(
-          appEmail: "essa.shehab.dev@gmail.com",
-          appName: "TU Smart Session",
+          appEmail: "app.program99@gmail.com",
+          appName: "TU Smart Services",
           userEmail: email,
           otpLength: 6,
           otpType: OTPType.digitsOnly);
