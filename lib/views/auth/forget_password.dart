@@ -102,10 +102,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         textInputAction: TextInputAction.none,
                         obscureText: true,
                         validator: (value) {
-                          if(value == null||value.isEmpty){
+                          if (value == null || value.isEmpty) {
                             return "This field is required";
-                          }
-                          else if (confirmPasswordController.text ==
+                          } else if (confirmPasswordController.text ==
                               passwordController.text) {
                             return null;
                           }
@@ -116,7 +115,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       ButtonWidget(
                         minWidth: double.infinity,
                         onPressed: () async {
-                          if(_formKey.currentState!.validate()){
+                          if (_formKey.currentState!.validate()) {
                             final provider = Provider.of<AuthProvider>(context,
                                 listen: false);
                             provider.setUser(User(
